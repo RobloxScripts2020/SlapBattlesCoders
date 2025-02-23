@@ -1,6 +1,3 @@
---wait(1)
---game.Players.LocalPlayer:Kick("uhhhh yours slaps are geting restored make sure to use this everyday put timer ")
---game.Players.LocalPlayer:Kick("Banned for game doesnt want u here so timeline 500 days/300000 hours enjoy")
 game.StarterGui : SetCore ("SendNotification", { 
          Title = "Make by deto";
          Text = "enjoy";
