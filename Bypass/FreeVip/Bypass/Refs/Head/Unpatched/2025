@@ -1,0 +1,7 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Nice!",Text = "enable free titan credits to Akrama0" ,Duration = 1000, Icon = "rbxthumb://type=Asset&id=9649923610&w=150&h=150",Button1 = "Enable Free Titan"})
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
+wait(1)
+fireclickdetector(game:GetService("Workspace").Lobby.Titan.ClickDetector)
+wait(10)
+game.ReplicatedStorage.SpecialAccess:FireServer()
+game.Players.LocalPlayer:Kick("no reason")
