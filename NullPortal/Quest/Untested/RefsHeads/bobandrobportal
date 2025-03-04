@@ -5,4 +5,4 @@ fireclickdetector(game:GetService("Workspace").Lobby.rob.ClickDetector)
 wait(2)
 game:GetService("ReplicatedStorage").rob:FireServer()
 wait(2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Sumn4s
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Players.Sumn4s
