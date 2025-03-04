@@ -1,0 +1,7 @@
+fireclickdetector(game:GetService("Workspace").Lobby.rob.ClickDetector)
+wait(1)
+game:GetService("ReplicatedStorage").rob:FireServer()
+wait(1)
+fireclickdetector(game:GetService("Workspace").Lobby.bob.ClickDetector)
+wait(1)
+game:GetService("ReplicatedStorage").bob:FireServer()
