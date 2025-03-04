@@ -1,0 +1,6 @@
+fireclickdetector(game:GetService("Workspace").Lobby.bob.ClickDetector)
+wait(1)
+game:GetService("ReplicatedStorage").bob:FireServer()
+fireclickdetector(game:GetService("Workspace").Lobby.rob.ClickDetector)
+game:GetService("ReplicatedStorage").rob:FireServer()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.bob.CFrame
