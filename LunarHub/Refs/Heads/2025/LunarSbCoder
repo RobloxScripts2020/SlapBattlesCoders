@@ -18,6 +18,7 @@ local TextButton = Instance.new("TextButton")
 local TextButton_2 = Instance.new("TextButton")
 local TextButton_3 = Instance.new("TextButton")
 local TextButton_4 = Instance.new("TextButton")
+local TextButton_5 = Instance.new("TextButton")
 
 -- Properties
 
@@ -56,7 +57,7 @@ TextLabel_2.BorderSizePixel = 0
 TextLabel_2.Position = UDim2.new(0, 0, 0.112759642, 0)
 TextLabel_2.Size = UDim2.new(0, 89, 0, 267)
 TextLabel_2.Font = Enum.Font.Merriweather
-TextLabel_2.Text = "any bugs contact animalstalktome#001 on discord"
+TextLabel_2.Text = "any bugs contact lunareclips"
 TextLabel_2.TextColor3 = Color3.new(0, 0, 0)
 TextLabel_2.TextScaled = true
 TextLabel_2.TextSize = 2
@@ -140,9 +141,24 @@ TextButton_4.TextScaled = true
 TextButton_4.TextSize = 14
 TextButton_4.TextWrapped = true
 
+TextButton_5.Parent = Frame
+TextButton_5.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_5.BackgroundTransparency = 1
+TextButton_5.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_5.BorderSizePixel = 0
+TextButton_5.Position = UDim2.new(0.156424582, 0, 0.735905051, 0)
+TextButton_5.Size = UDim2.new(0, 448, 0, 40)
+TextButton_5.Modal = true
+TextButton_5.Font = Enum.Font.Unknown
+TextButton_5.Text = "auto verison of replica/rob farm more OP stuff coming soon in just in days"
+TextButton_5.TextColor3 = Color3.new(0, 0, 0)
+TextButton_5.TextScaled = true
+TextButton_5.TextSize = 14
+TextButton_5.TextWrapped = true
+
 -- Scripts
 
-local function ISDT_fake_script() -- TextButton.Script 
+local function ASIE_fake_script() -- TextButton.Script 
 	local script = Instance.new('Script', TextButton)
 
 	function onButtonClicked()
@@ -152,8 +168,8 @@ local function ISDT_fake_script() -- TextButton.Script
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
 	
 end
-coroutine.wrap(ISDT_fake_script)()
-local function VNGFAW_fake_script() -- TextButton_2.Script 
+coroutine.wrap(ASIE_fake_script)()
+local function NNVJ_fake_script() -- TextButton_2.Script 
 	local script = Instance.new('Script', TextButton_2)
 
 	function onButtonClicked()
@@ -163,8 +179,8 @@ local function VNGFAW_fake_script() -- TextButton_2.Script
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
 	
 end
-coroutine.wrap(VNGFAW_fake_script)()
-local function AZOL_fake_script() -- TextButton_3.Script 
+coroutine.wrap(NNVJ_fake_script)()
+local function RPTKQ_fake_script() -- TextButton_3.Script 
 	local script = Instance.new('Script', TextButton_3)
 
 	function onButtonClicked()
@@ -174,8 +190,8 @@ local function AZOL_fake_script() -- TextButton_3.Script
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
 	
 end
-coroutine.wrap(AZOL_fake_script)()
-local function CXVIIZZ_fake_script() -- TextButton_4.Script 
+coroutine.wrap(RPTKQ_fake_script)()
+local function FJFQTY_fake_script() -- TextButton_4.Script 
 	local script = Instance.new('Script', TextButton_4)
 
 	function onButtonClicked()
@@ -185,4 +201,15 @@ local function CXVIIZZ_fake_script() -- TextButton_4.Script
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
 	
 end
-coroutine.wrap(CXVIIZZ_fake_script)()
+coroutine.wrap(FJFQTY_fake_script)()
+local function THTKOM_fake_script() -- TextButton_5.Script 
+	local script = Instance.new('Script', TextButton_5)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/Auto/Replica/Rob/Farm/Refs/Head"))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(THTKOM_fake_script)()
