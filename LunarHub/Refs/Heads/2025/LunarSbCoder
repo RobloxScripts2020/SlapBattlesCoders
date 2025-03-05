@@ -8,7 +8,7 @@
 
 
 -- Instances
-
+game.Players.imjustachillguy_562:Kick("Blacklisted you can get whitelisted by not being gay:] jk get whitelisted by animalstalktome")
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
