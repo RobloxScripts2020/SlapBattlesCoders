@@ -1,0 +1,188 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
+
+-- Properties
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0.101961, 0.101961, 0.101961)
+Frame.BorderColor3 = Color3.new(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0987491831, 0, 0.123626366, 0)
+Frame.Size = UDim2.new(0, 537, 0, 337)
+Frame.Active = true
+Frame.Draggable = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 537, 0, 23)
+TextLabel.Font = Enum.Font.Merriweather
+TextLabel.Text = "LunarEclips#Hub"
+TextLabel.TextColor3 = Color3.new(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 2
+TextLabel.TextStrokeColor3 = Color3.new(1, 1, 1)
+TextLabel.TextStrokeTransparency = 0
+TextLabel.TextWrapped = true
+
+TextLabel_2.Parent = Frame
+TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0, 0, 0.112759642, 0)
+TextLabel_2.Size = UDim2.new(0, 89, 0, 267)
+TextLabel_2.Font = Enum.Font.Merriweather
+TextLabel_2.Text = "any bugs contact animalstalktome#001 on discord"
+TextLabel_2.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 2
+TextLabel_2.TextStrokeColor3 = Color3.new(1, 1, 1)
+TextLabel_2.TextStrokeTransparency = 0
+TextLabel_2.TextWrapped = true
+
+TextLabel_3.Parent = Frame
+TextLabel_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_3.BackgroundTransparency = 1
+TextLabel_3.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0, 0, 0.905044496, 0)
+TextLabel_3.Size = UDim2.new(0, 537, 0, 32)
+TextLabel_3.Font = Enum.Font.Merriweather
+TextLabel_3.Text = "sections are not working until 3/4/2025 to /3/10/2025"
+TextLabel_3.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_3.TextScaled = true
+TextLabel_3.TextSize = 2
+TextLabel_3.TextStrokeColor3 = Color3.new(1, 1, 1)
+TextLabel_3.TextStrokeTransparency = 0
+TextLabel_3.TextWrapped = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton.BackgroundTransparency = 1
+TextButton.BorderColor3 = Color3.new(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.14897579, 0, 0.0890207738, 0)
+TextButton.Size = UDim2.new(0, 457, 0, 40)
+TextButton.Modal = true
+TextButton.Font = Enum.Font.Unknown
+TextButton.Text = "Replica/rob farm must be in hunter room execute script 2nd time to be able to kill npc bc first time it wont kill"
+TextButton.TextColor3 = Color3.new(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14
+TextButton.TextWrapped = true
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_2.BackgroundTransparency = 1
+TextButton_2.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.165735573, 0, 0.267062306, 0)
+TextButton_2.Size = UDim2.new(0, 448, 0, 40)
+TextButton_2.Modal = true
+TextButton_2.Font = Enum.Font.Unknown
+TextButton_2.Text = "Instant null portal requirement rob/bob"
+TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14
+TextButton_2.TextWrapped = true
+
+TextButton_3.Parent = Frame
+TextButton_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_3.BackgroundTransparency = 1
+TextButton_3.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_3.BorderSizePixel = 0
+TextButton_3.Position = UDim2.new(0.165735573, 0, 0.421364993, 0)
+TextButton_3.Size = UDim2.new(0, 448, 0, 40)
+TextButton_3.Modal = true
+TextButton_3.Font = Enum.Font.Unknown
+TextButton_3.Text = "free ks soul bank"
+TextButton_3.TextColor3 = Color3.new(0, 0, 0)
+TextButton_3.TextScaled = true
+TextButton_3.TextSize = 14
+TextButton_3.TextWrapped = true
+
+TextButton_4.Parent = Frame
+TextButton_4.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_4.BackgroundTransparency = 1
+TextButton_4.BorderColor3 = Color3.new(0, 0, 0)
+TextButton_4.BorderSizePixel = 0
+TextButton_4.Position = UDim2.new(0.156424582, 0, 0.590504467, 0)
+TextButton_4.Size = UDim2.new(0, 448, 0, 40)
+TextButton_4.Modal = true
+TextButton_4.Font = Enum.Font.Unknown
+TextButton_4.Text = "spawn piano"
+TextButton_4.TextColor3 = Color3.new(0, 0, 0)
+TextButton_4.TextScaled = true
+TextButton_4.TextSize = 14
+TextButton_4.TextWrapped = true
+
+-- Scripts
+
+local function ISDT_fake_script() -- TextButton.Script 
+	local script = Instance.new('Script', TextButton)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/BestUndetectable/RobAutoKillFarm/Replica/Rob"))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(ISDT_fake_script)()
+local function VNGFAW_fake_script() -- TextButton_2.Script 
+	local script = Instance.new('Script', TextButton_2)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/NullPortalPortal/requirement/bob/rob/refs/heads/PianoDrama"))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(VNGFAW_fake_script)()
+local function AZOL_fake_script() -- TextButton_3.Script 
+	local script = Instance.new('Script', TextButton_3)
+
+	function onButtonClicked()
+		game:GetService("ReplicatedStorage").KillstreakSoulbankAbility:FireServer(unpack({[1] = true}))
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(AZOL_fake_script)()
+local function CXVIIZZ_fake_script() -- TextButton_4.Script 
+	local script = Instance.new('Script', TextButton_4)
+
+	function onButtonClicked()
+		game:GetService("ReplicatedStorage").Piano:FireServer(unpack({[1] = true}))
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(CXVIIZZ_fake_script)()
