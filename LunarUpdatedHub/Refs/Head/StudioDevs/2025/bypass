@@ -8,7 +8,7 @@
 
 
 -- Instances
-
+game.Players.LocalPlayer:Kick("fvgh3efh3hg this script has been patched most likey will be unpatched to 3/7/2025 to 3/17/2025 due to patches that effected the script :D total normally patch")
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
