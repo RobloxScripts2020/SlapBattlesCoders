@@ -220,12 +220,5 @@ UICorner.Parent = ErrorPrompt
 UICorner.CornerRadius = UDim.new(0, 12)
 
 -- Scripts
-
-local function WFWOGD_fake_script() -- promptOverlay.LocalScript 
-	local script = Instance.new('LocalScript', promptOverlay)
-
-	script.Parent.Parent.promptOverlay:Destroy()
-end
-coroutine.wrap(WFWOGD_fake_script)()
--- d.FakeKick is disabled.
--- nil.FakeServer is disabled.
+wait(10)
+script.Parent.Parent.promptOverlay:Destory()
