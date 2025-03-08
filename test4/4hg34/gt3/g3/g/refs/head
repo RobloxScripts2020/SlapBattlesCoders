@@ -5,7 +5,7 @@
 	    -- Check if the name contains the character '{'
 	    if v.Name:find("{") then
 	        local args = {
-	            [1] = "rob"
+	            [1] = "Replica"
 	        }
 	
 	        -- Check if v is a RemoteEvent and can FireServer
