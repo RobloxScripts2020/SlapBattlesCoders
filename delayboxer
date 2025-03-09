@@ -28,7 +28,7 @@ end
 
 
 	if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Boxer" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/EquipBoxer"))()
+		fireclickdetector(Lobby.Boxer.ClickDetector)
 	end
 	
 	
