@@ -2,7 +2,7 @@ if game.PlaceId == 7234087065 then
 		firetouchinterest(game:GetService("Workspace").Buildings.house.TP, game.Players.LocalPlayer.Character.Torso, 1)
 		firetouchinterest(game:GetService("Workspace").Buildings.house.TP, game.Players.LocalPlayer.Character.Torso, 0)
 		wait(2)
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/EquipBoxer"))()
+		fireclickdetector(workspace.BoxingGloves.ClickDetector)
 return
 end
 
@@ -28,7 +28,7 @@ end
 
 
 	if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Boxer" then
-		fireclickdetector(Lobby.Boxer.ClickDetector)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/EquipBoxer"))()
 	end
 	
 	
