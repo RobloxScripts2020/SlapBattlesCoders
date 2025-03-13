@@ -1,0 +1,16 @@
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "Local Skid Right Here>>>>>"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29000"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29001"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29002"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29003"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29004"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29005"
+wait(1)
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "29100"
