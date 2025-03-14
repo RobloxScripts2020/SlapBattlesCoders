@@ -73,7 +73,7 @@ local function RUCT_fake_script() -- chat.Script
 	wait(23.5)
 	script.Parent.Parent.chat.Text = "Who Dares To Awaken Me"
 	wait(27.5)
-	script.Parent.Parent.chat.Text = "Ill grant you my powers So you can get R E V E N G E On the ones who made fun of you.."
+	script.Parent.Parent.chat.Text = "Ill grant you my powers So you can get R E V E N G E On the ones who made fun of you..."
 end
 coroutine.wrap(RUCT_fake_script)()
 local function HORRL_fake_script() -- Frame.Script 
