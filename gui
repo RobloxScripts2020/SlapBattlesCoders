@@ -110,7 +110,7 @@ local function OTCXI_fake_script() -- TextButton_3.Script
 		local script = Instance.new('Script', TextButton)
 	
 		function onButtonClicked()
-			game.Players.LocalPlayer:Kick("This is beta version 3:00 AM to 3:00 PM gonna be finshed")
+			game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "I am the nonstopable "
 		end
 	
 		script.Parent.MouseButton1Click:connect(onButtonClicked)
