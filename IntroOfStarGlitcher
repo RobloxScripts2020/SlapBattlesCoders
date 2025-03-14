@@ -1,0 +1,83 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local talkingGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local you = Instance.new("TextLabel")
+local chat = Instance.new("TextLabel")
+
+-- Properties
+
+talkingGui.Name = "talkingGui"
+talkingGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+talkingGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = talkingGui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BorderColor3 = Color3.new(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(111110, 100, 1, 2147483647)
+
+you.Name = "you"
+you.Parent = Frame
+you.BackgroundColor3 = Color3.new(1, 1, 1)
+you.BackgroundTransparency = 1
+you.BorderColor3 = Color3.new(0, 0, 0)
+you.BorderSizePixel = 0
+you.Position = UDim2.new(5.17516639e-07, 0, 2.58441929e-07, 0)
+you.Size = UDim2.new(0, 1220, 0, 50)
+you.Font = Enum.Font.Kalam
+you.Text = ""
+you.TextColor3 = Color3.new(0, 0, 0)
+you.TextSize = 14
+
+chat.Name = "chat"
+chat.Parent = Frame
+chat.BackgroundColor3 = Color3.new(1, 1, 1)
+chat.BackgroundTransparency = 1
+chat.BorderColor3 = Color3.new(0, 0, 0)
+chat.BorderSizePixel = 0
+chat.Position = UDim2.new(5.17516639e-07, 0, 2.58441929e-07, 0)
+chat.Size = UDim2.new(0, 1220, 0, 50)
+chat.Font = Enum.Font.Kalam
+chat.Text = ""
+chat.TextColor3 = Color3.new(0, 0, 0)
+chat.TextSize = 14
+
+-- Scripts
+
+local function NYHHMK_fake_script() -- you.Script 
+	local script = Instance.new('Script', you)
+
+	wait(3.5)
+	script.Parent.Parent.you.Text = "Sorry to bother you but i request your power to get My Payback..."
+	wait(3.6)
+	script.Parent.Parent.you.Text = "T h e y B u i l l e d m e A n d s p a w n k i l l e  me"
+end
+coroutine.wrap(NYHHMK_fake_script)()
+local function RUCT_fake_script() -- chat.Script 
+	local script = Instance.new('Script', chat)
+
+	wait(1.5)
+	script.Parent.Parent.chat.Text = "............."
+	wait(2)
+	script.Parent.Parent.chat.Text = "Who Dares To Awaken Me"
+	wait(4.1)
+	script.Parent.Parent.chat.Text = "Ill grant you my powers So you can get R E V E N G E On the ones who made fun of you.."
+end
+coroutine.wrap(RUCT_fake_script)()
+local function HORRL_fake_script() -- Frame.Script 
+	local script = Instance.new('Script', Frame)
+
+	wait(4.19)
+	script.Parent.Parent.Frame:Destroy()
+end
+coroutine.wrap(HORRL_fake_script)()
