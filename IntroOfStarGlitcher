@@ -57,20 +57,22 @@ chat.TextSize = 14
 local function NYHHMK_fake_script() -- you.Script 
 	local script = Instance.new('Script', you)
 
-	wait(3.5)
+	wait(13.5)
 	script.Parent.Parent.you.Text = "Sorry to bother you but i request your power to get My Payback..."
-	wait(3.6)
+	wait(17.6)
 	script.Parent.Parent.you.Text = "T h e y B u i l l e d m e A n d s p a w n k i l l e  me"
+wait(19.9)
+script.Parent.Parent.you.Text = " "
 end
 coroutine.wrap(NYHHMK_fake_script)()
 local function RUCT_fake_script() -- chat.Script 
 	local script = Instance.new('Script', chat)
 
-	wait(1.5)
+	wait(21.5)
 	script.Parent.Parent.chat.Text = "............."
-	wait(2)
+	wait(23.5)
 	script.Parent.Parent.chat.Text = "Who Dares To Awaken Me"
-	wait(4.1)
+	wait(27.5)
 	script.Parent.Parent.chat.Text = "Ill grant you my powers So you can get R E V E N G E On the ones who made fun of you.."
 end
 coroutine.wrap(RUCT_fake_script)()
