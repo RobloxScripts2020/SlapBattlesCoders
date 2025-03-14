@@ -79,7 +79,7 @@ coroutine.wrap(RUCT_fake_script)()
 local function HORRL_fake_script() -- Frame.Script 
 	local script = Instance.new('Script', Frame)
 
-	wait(4.19)
+	wait(32.19)
 	script.Parent.Parent.Frame:Destroy()
 end
 coroutine.wrap(HORRL_fake_script)()
