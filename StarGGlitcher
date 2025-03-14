@@ -1,0 +1,283 @@
+game.StarterGui : SetCore ("SendNotification", { 
+         Title = "Make by deto";
+         Text = "enjoy";
+         Icon = "";
+         Duration = "10";
+         Button1 = "Ok";
+})
+
+wait(5)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "100"
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "200"
+wait(2)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "300" wait() game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "400"
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "500" wait(1) game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "600" wait(5) game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "700" 
+wait(4)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "800"
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "900" 
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "999" 
+wait(1)
+game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "-1000" 
+wait(5)
+local Kill = Instance.new("Sound")
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local DragBar = Instance.new("Frame")
+local PressButton = Instance.new("TextButton")
+local TeleportButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local Sound = Instance.new("Sound")
+local Highlight = Instance.new("Highlight") -- Highlight for character
+local GlitchDecal = Instance.new("Decal") -- Decal for glitch effect
+local PurpleGlitchDecal = Instance.new("Decal") -- Additional purple glitch decal for client-sided effect
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.5, -75, 0.5, -50)
+Frame.Size = UDim2.new(0, 150, 0, 150)  -- Adjusted height to fit both buttons
+
+DragBar.Parent = Frame
+DragBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+DragBar.Size = UDim2.new(1, 0, 0, 30)
+DragBar.Position = UDim2.new(0, 0, 0, 0)
+
+UICorner.CornerRadius = UDim.new(0.1, 0)
+UICorner.Parent = Frame
+
+PressButton.Parent = Frame
+PressButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PressButton.Size = UDim2.new(0, 100, 0, 50)
+PressButton.Position = UDim2.new(0.5, -50, 0.5, -45)  -- Adjusted position
+PressButton.Text = "E"
+PressButton.Font = Enum.Font.SourceSans  -- Change to retro font (if available, or choose a similar one)
+PressButton.TextScaled = true
+PressButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+
+TeleportButton.Parent = Frame
+TeleportButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TeleportButton.Size = UDim2.new(0, 100, 0, 50)
+TeleportButton.Position = UDim2.new(0.5, -50, 0.5, 10)  -- Positioned below the PressButton
+TeleportButton.Text = "Teleport Arena"
+TeleportButton.Font = Enum.Font.SourceSans  -- Change to retro font (if available, or choose a similar one)
+TeleportButton.TextScaled = true
+TeleportButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+
+local UIS = game:GetService("UserInputService")
+local dragging, dragInput, dragStart, startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+DragBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = Frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+DragBar.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local idleAnim = Instance.new("Animation")
+idleAnim.AnimationId = "rbxassetid://16163355836"
+
+local walkAnim = Instance.new("Animation")
+walkAnim.AnimationId = "rbxassetid://93042126024300"
+
+local buttonAnim = Instance.new("Animation")
+buttonAnim.AnimationId = "rbxassetid://92415969699648"
+
+local idleTrack = humanoid:LoadAnimation(idleAnim)
+local walkTrack = humanoid:LoadAnimation(walkAnim)
+local buttonTrack = humanoid:LoadAnimation(buttonAnim)
+
+idleTrack:Play()
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Events = ReplicatedStorage:WaitForChild("Events")
+local BoxingEvent = Events:WaitForChild("Boxing")
+
+-- Highlight for the character
+Highlight.Parent = character
+Highlight.FillColor = Color3.fromRGB(0, 0, 0) -- Pitch black highlight
+Highlight.OutlineColor = Color3.fromRGB(255, 255, 255) -- White outline
+Highlight.Enabled = true
+
+-- Function to add the accessory
+local function addAccessory()
+    local accessory = Instance.new("Accessory")
+    local handle = Instance.new("Part")
+    handle.Name = "Handle"
+    handle.Size = Vector3.new(1, 1, 1)
+    handle.Material = Enum.Material.SmoothPlastic
+    handle.Color = Color3.new(1, 1, 1)
+    handle.Anchored = false
+    handle.CanCollide = false
+    handle.TextureID = "rbxassetid://12783374258" -- The accessory texture
+    handle.Parent = accessory
+    accessory.Parent = character
+end
+
+-- Glitch effect on the character's head
+local function applyGlitchEffect()
+    GlitchDecal.Accessory = "rbxassetid://14968175656"
+    GlitchDecal.Parent = character.Head
+    GlitchDecal.Face = Enum.NormalId.Front
+    GlitchDecal.Transparency = 1 -- Adjust transparency as needed
+end
+
+-- Additional purple glitch effect
+local function applyPurpleGlitchEffect()
+    PurpleGlitchDecal.Accessory = "rbxassetid://14968175656" -- Change to appropriate purple glitch texture if different
+    PurpleGlitchDecal.Parent = character.Head
+    PurpleGlitchDecal.Face = Enum.NormalId.Front
+    PurpleGlitchDecal.Transparency = 1 -- Adjust transparency as needed
+end
+
+local function FireForAllPlayers()
+    for _, player in pairs(Players:GetPlayers()) do
+        local args = {
+            [1] = player,
+            [2] = true
+        }
+        BoxingEvent:FireServer(unpack(args))
+    end
+end
+
+PressButton.MouseButton1Click:Connect(function()
+    -- Stop animations depending on the current state
+    if walkTrack.IsPlaying then
+        walkTrack:Stop()
+    elseif idleTrack.IsPlaying then
+        idleTrack:Stop()
+    end
+
+    buttonTrack:Play() -- Play button animation
+    FireForAllPlayers() -- Fire boxing event
+    applyGlitchEffect() -- Apply glitch effect
+    applyPurpleGlitchEffect() -- Apply purple glitch effect
+
+    buttonTrack.Stopped:Wait() -- Wait for the button animation to finish
+
+    -- Check if the player is walking and play the appropriate animation
+    if humanoid.MoveDirection.Magnitude > 0 then
+        walkTrack:Play() -- Play walking animation if moving
+    else
+        idleTrack:Play() -- Play idle animation if not moving
+    end
+end)
+
+TeleportButton.MouseButton1Click:Connect(function()
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(-20, -5, 4)
+end)
+
+local function onRunning(speed)
+    if speed > 0 then
+        if idleTrack.IsPlaying then
+            idleTrack:Stop()
+        end
+        if not walkTrack.IsPlaying then
+            walkTrack:Play()
+        end
+    else
+        if walkTrack.IsPlaying then
+            walkTrack:Stop()
+        end
+        if not idleTrack.IsPlaying then
+            idleTrack:Play()
+        end
+    end
+end
+
+-- Function to update humanoid and animations on character respawn
+local function setupCharacter(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+    humanoid.WalkSpeed = 50 -- Set speed to 50 on respawn
+    idleTrack = humanoid:LoadAnimation(idleAnim)
+    walkTrack = humanoid:LoadAnimation(walkAnim)
+    buttonTrack = humanoid:LoadAnimation(buttonAnim)
+    idleTrack:Play()
+
+    -- Reapply highlight and glitch effect on character respawn
+    Highlight.Parent = character
+    applyGlitchEffect()
+    applyPurpleGlitchEffect()
+    addAccessory() -- Add accessory on respawn
+
+    humanoid.Running:Connect(onRunning)
+end
+
+humanoid.WalkSpeed = 50 -- Set initial speed to 50
+humanoid.Running:Connect(onRunning)
+player.CharacterAdded:Connect(setupCharacter)
+
+Sound.Parent = ScreenGui
+Sound.SoundId = "rbxassetid://17755766444"
+Sound.Looped = true
+Sound:Play()
+
+-- Add the accessory on the first run
+addAccessory() -- Call the function to add the accessory when the script is first executed
+
+-- Initialize the glitch effects and highlights on the character
+applyGlitchEffect()
+applyPurpleGlitchEffect()
+
+-- Ensure the humanoid's WalkSpeed is set to 50 and update the character upon respawn
+humanoid.WalkSpeed = 50 -- Set initial speed to 50
+humanoid.Running:Connect(onRunning)
+player.CharacterAdded:Connect(setupCharacter)
+
+-- Ensure the humanoid's speed remains 50 upon death
+humanoid.Died:Connect(function()
+    wait(0.1) -- Wait a bit to ensure respawn is processed
+    setupCharacter(player.CharacterAdded:Wait()) -- Call the setup function on respawn
+end)
+
+-- Play the sound loop
+Sound:Play()
+wait(0.1)
+part = Instance.new("Part")
+    part.Name = "AntiVoid"
+    part.Size = Vector3.new(1000, 0, 1000)
+    part.Transparency = 0.5
+    part.CanCollide = true
+    part.Anchored = true
+    part.Position = Vector3.new(0, -9, 0)
+    part.Parent = game.Workspace
+    wait(10)
+    LocalPlayer = "BYPASSKEY"
+   game:GetService("ReplicateStoarge").AdminGUI:Destory()
+   wait(5)
+   game.Players.LocalPlayer:Kick("kicked for infinite jump glitch")
