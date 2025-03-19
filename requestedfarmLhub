@@ -1,6 +1,6 @@
 loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/FiredectorNull'))()
 game.ReplicatedStorage.NullAbility:FireServer()
-wait(2.5)
+wait(5.5)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/FireDectorSentry'))()
 wait(2)
 game:GetService("ReplicatedStorage").Sentry:FireServer()
