@@ -1,0 +1,50 @@
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.33, 39.71, 195.33)
+task.wait(0.2)
+
+local args = {
+    [1] = "Ban Hammer"
+}
+game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
+task.wait(0.4)
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(306, 39, 189)
+local teleportScript = [[
+    repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+wait(1)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local hrp = character:FindFirstChild("HumanoidRootPart")
+
+    if hrp then
+        hrp.CFrame = CFrame.new(-7, 845.50, 68)
+    end
+
+    task.wait(0.5)
+
+    local prompt = game:GetService("ReplicatedStorage"):WaitForChild("Assets", 9e9):WaitForChild("FinalBoss", 9e9):WaitForChild("Head", 9e9):FindFirstChild("ProximityPrompt")
+    if prompt then
+        fireproximityprompt(prompt)
+    end
+
+    task.wait(0.5)
+
+    local args = { [1] = true }
+    game:GetService("ReplicatedStorage"):WaitForChild("Remotes", 9e9):WaitForChild("FinishedBossDialogue", 9e9):FireServer(unpack(args))
+
+    task.wait(1)
+
+    local boss = workspace:FindFirstChild("Map") and workspace.Map.Components.NPCs:FindFirstChild("FinalBoss") and workspace.Map.Components.NPCs.FinalBoss:FindFirstChild("FinalBoss")
+    if boss and boss:FindFirstChild("Humanoid") then
+        boss.Humanoid.Health = 0
+    end
+]]
+
+if syn and syn.queue_on_teleport then
+    syn.queue_on_teleport(teleportScript)
+elseif queue_on_teleport then
+    queue_on_teleport(teleportScript)
+elseif getgenv and getgenv().queue_on_teleport then
+    getgenv().queue_on_teleport(teleportScript)
+else
+    warn("Your executor does not support queue_on_teleport.")
+end
