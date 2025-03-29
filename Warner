@@ -1,0 +1,6 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Nice!",Text = "Warning⚠️⚠️⚠️⚠️☢️☢️☢️☢️☢️☢️☢️ Running This Unsafe Script Could Give Access To your info  " ,Duration = 1000, Icon = "rbxthumb://type=Asset&id=0&w=150&h=150",})
+wait(5)
+game.Players.LocalPlayer.Character.Humanoid.Health = 1.2
+wait(10)
+game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Nice!",Text = "Successfully Taken your info bye" ,Duration = 1000, Icon = "rbxthumb://type=Asset&id=0&w=150&h=150",})
+wait(5) game.Players.LocalPlayer.Charactor.Humanoid.Health = 0 wait(5.5) game.Players.LocalPlayer:Kick("You have been banned:you created or used an account to avoid an enforcement action taken against another account")
