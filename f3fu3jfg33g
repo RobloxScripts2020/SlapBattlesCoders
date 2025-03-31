@@ -1,0 +1,36 @@
+local Players = game.Players.costa195 -- Replace with your specific part
+
+-- Create a sound object
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://rbxassetid://5650647283"  -- Replace with your uploaded audio asset ID
+sound.Parent = Players  -- Attach sound to the part
+
+-- Play the sound
+sound:Play()
+
+-- Optional: Set the sound's volume and other properties
+sound.Volume = 10  -- Volume between 0 (silent) and 1 (full volume)
+sound.Looped = false  -- Set to true if you want the sound to loop
+PlaybackSpeed = 0.6
+wait(0.1)
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Replace this with the ID of your animation
+local animationId = "rbxassetid://16102819260"
+
+-- Create an Animation instance
+local animation = Instance.new("Animation")
+animation.AnimationId = animationId
+
+-- Load the animation into the humanoid
+local animationTrack = humanoid:LoadAnimation(animation)
+
+-- Play the animation
+animationTrack:Play()
+
+-- Optional: Set animation properties (e.g., loop, speed, etc.)
+animationTrack.Looped = false  -- Set to true if you want the animation to loop
+animationTrack.Speed = 0.85  -- Adjust the speed of the animation
