@@ -1,0 +1,7 @@
+--showcases coming soon https://www.youtube.com/channel/UCvF8jnCKKH-ZJhWyz_3cjnA/community?lb=Ugkxnn-g_2cGAk8sNQI-ybe1c2mAwn6XBjV5
+local E Button If Press()
+Local Args
+1 [Line]
+2 [Line]
+3
+game.ReplicatedStorage.Assets.Boxing:FireServer()
