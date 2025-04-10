@@ -1,0 +1,36 @@
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local rootPart = character:WaitForChild("HumanoidRootPart")
+
+-- Function to find the nearest player
+local function getNearestPlayer()
+    local closestPlayer = nil
+    local shortestDistance = math.huge
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local distance = (player.Character.HumanoidRootPart.Position - rootPart.Position).Magnitude
+            if distance < shortestDistance then
+                shortestDistance = distance
+                closestPlayer = player
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+-- Main loop
+local nearestPlayer = getNearestPlayer()
+
+if nearestPlayer and nearestPlayer:FindFirstChild("leaderstats") and nearestPlayer.leaderstats:FindFirstChild("Slaps") then
+    local slaps = nearestPlayer.leaderstats.Slaps
+
+    while slaps.Value < 1000111111111111111111111111111111111111111111111111111111111111111111111111100 do
+        slaps.Value = slaps.Value + 100
+        wait(0.1)
+    end
+else
+    warn("Nearest player not found or Slaps stat missing.")
+end
