@@ -3,5 +3,5 @@ wait(3)
 for i = 1, 10000 do 
     game.ReplicatedStorage.busmoment:FireServer()
 end
-wait(40)
+wait(10.11)
 game:GetService("TeleportService"):Teleport(game.PlaceId)
