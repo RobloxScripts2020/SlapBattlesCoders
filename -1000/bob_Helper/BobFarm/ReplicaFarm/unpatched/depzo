@@ -1,6 +1,6 @@
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
 wait(3)
-for i = 1, 1000000 do 
+for i = 1, 50000 do 
     game.ReplicatedStorage.Duplicate:FireServer()
 end
 wait(10.01)
