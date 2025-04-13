@@ -1,0 +1,7 @@
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
+wait(3)
+for i = 1, 10000 do 
+    game.ReplicatedStorage.Duplicate:FireServer()
+end
+wait(10.01)
+game:GetService("TeleportService"):Teleport(game.PlaceId)
