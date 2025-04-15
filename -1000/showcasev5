@@ -1,0 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-1000/Loading%20menu/byhelp"))()
+wait(10)
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(15)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-1000/Loading%20menu/hub"))()
