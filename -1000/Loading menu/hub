@@ -6,20 +6,24 @@
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton2 = Instance.new("TextButton")
+local farm_v3 = Instance.new("TextButton")
+local dupelic = Instance.new("TextButton")
+local averagekicker = Instance.new("TextButton")
 
 --Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
 
 Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-Frame.BackgroundTransparency = 1.000
+Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
 Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.32083115, 0, 0.466609597, 0)
-Frame.Size = UDim2.new(0, 261, 0, 31)
+Frame.Position = UDim2.new(0.337166756, 0, 0.167112291, 0)
+Frame.Size = UDim2.new(0, 498, 0, 288)
 Frame.Active = true
 Frame.Draggable = true
 
@@ -28,62 +32,176 @@ TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.000
 TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(0, 264, 0, 30)
-TextLabel.Font = Enum.Font.Merriweather
-TextLabel.Text = "Glove Abusers & Mastery Abusers Hub"
+TextLabel.Size = UDim2.new(0, 498, 0, 19)
+TextLabel.Font = Enum.Font.IndieFlower
+TextLabel.Text = "slap battles masterys & glove abusers!"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextSize = 14.000
-TextLabel.TextStrokeColor3 = Color3.fromRGB(8, 17, 75)
+TextLabel.TextSize = 20.000
+TextLabel.TextStrokeColor3 = Color3.fromRGB(46, 23, 136)
 TextLabel.TextStrokeTransparency = 0.000
-TextLabel.TextTransparency = 1.000
+
+TextLabel_2.Parent = Frame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0.423694789, 0, 0.784722209, 0)
+TextLabel_2.Size = UDim2.new(0, -19, 0, 92)
+TextLabel_2.Font = Enum.Font.IndieFlower
+TextLabel_2.Text = "go to mastery abuser (haha skids its not done yet bc i am so lazy af)"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 12.000
+TextLabel_2.TextStrokeColor3 = Color3.fromRGB(46, 23, 136)
+TextLabel_2.TextStrokeTransparency = 0.000
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.385542154, 0, 0.118055552, 0)
+TextButton.Size = UDim2.new(0, 96, 0, 50)
+TextButton.Font = Enum.Font.Merriweather
+TextButton.Text = "Spawn ABOVE 10k to 90  clones in one click (SPAM BUTTON MIGHT GET BOB "
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+TextButton.TextStrokeColor3 = Color3.fromRGB(16, 26, 89)
+TextButton.TextStrokeTransparency = 0.000
+
+TextButton2.Name = "TextButton2"
+TextButton2.Parent = Frame
+TextButton2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton2.BackgroundTransparency = 1.000
+TextButton2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton2.BorderSizePixel = 0
+TextButton2.Position = UDim2.new(0.385542154, 0, 0.204861104, 0)
+TextButton2.Size = UDim2.new(0, 96, 0, 50)
+TextButton2.Font = Enum.Font.Merriweather
+TextButton2.Text = "lag a server for cooldown to 1 miniute and abov (require bus glove"
+TextButton2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton2.TextSize = 14.000
+TextButton2.TextStrokeColor3 = Color3.fromRGB(16, 26, 89)
+TextButton2.TextStrokeTransparency = 0.000
+
+farm_v3.Name = "farm_v3"
+farm_v3.Parent = Frame
+farm_v3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+farm_v3.BackgroundTransparency = 1.000
+farm_v3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+farm_v3.BorderSizePixel = 0
+farm_v3.Position = UDim2.new(0.915430129, 0, 0.350694448, 0)
+farm_v3.Size = UDim2.new(0, -456, 0, 50)
+farm_v3.Font = Enum.Font.Merriweather
+farm_v3.Text = "fort spammer (v3) also this is free hub No links require "
+farm_v3.TextColor3 = Color3.fromRGB(0, 0, 0)
+farm_v3.TextSize = 14.000
+farm_v3.TextStrokeColor3 = Color3.fromRGB(16, 26, 89)
+farm_v3.TextStrokeTransparency = 0.000
+farm_v3.TextWrapped = true
+
+dupelic.Name = "dupelic"
+dupelic.Parent = Frame
+dupelic.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+dupelic.BackgroundTransparency = 1.000
+dupelic.BorderColor3 = Color3.fromRGB(0, 0, 0)
+dupelic.BorderSizePixel = 0
+dupelic.Position = UDim2.new(0.915430129, 0, 0.524305582, 0)
+dupelic.Size = UDim2.new(0, -456, 0, 50)
+dupelic.Font = Enum.Font.Merriweather
+dupelic.Text = "Duplicate Spawn Every 9 second (remember if it kicks ill add delay)"
+dupelic.TextColor3 = Color3.fromRGB(0, 0, 0)
+dupelic.TextSize = 14.000
+dupelic.TextStrokeColor3 = Color3.fromRGB(16, 26, 89)
+dupelic.TextStrokeTransparency = 0.000
+dupelic.TextWrapped = true
+
+averagekicker.Name = "averagekicker"
+averagekicker.Parent = Frame
+averagekicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+averagekicker.BackgroundTransparency = 1.000
+averagekicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+averagekicker.BorderSizePixel = 0
+averagekicker.Position = UDim2.new(0.939526558, 0, 0.697916687, 0)
+averagekicker.Size = UDim2.new(0, -456, 0, 50)
+averagekicker.Font = Enum.Font.Merriweather
+averagekicker.Text = "Use infinite jump ban to bypass ip ban (WARNING THIS CAN BAN U FOR INFINITE JUMP ALSO BYPASSES GRAB BAN OTHER BAN EVENTS"
+averagekicker.TextColor3 = Color3.fromRGB(0, 0, 0)
+averagekicker.TextScaled = true
+averagekicker.TextSize = 14.000
+averagekicker.TextStrokeColor3 = Color3.fromRGB(16, 26, 89)
+averagekicker.TextStrokeTransparency = 0.000
+averagekicker.TextWrapped = true
 
 -- Scripts:
 
-local function GWXP_fake_script() -- TextLabel.Script 
-	local script = Instance.new('Script', TextLabel)
+local function ONUYC_fake_script() -- TextButton.Script 
+	local script = Instance.new('Script', TextButton)
 
-	script.Parent.TextTransparency = 1
-	wait(0.9)
-	script.Parent.TextTransparency = 0.9
-	wait(0.8)
-	script.Parent.TextTransparency = 0.8
-	wait(0.7)
-	script.Parent.TextTransparency = 0.7
-	wait(0.6)
-	script.Parent.TextTransparency = 0.6
-	wait(0.5)
-	script.Parent.TextTransparency = 0.5
-	wait(0.4)
-	script.Parent.TextTransparency = 0.4
-	wait(0.3)
-	script.Parent.TextTransparency = 0.3
-	wait(0.2)
-	script.Parent.TextTransparency = 0.2
-	wait(0.1)
-	script.Parent.TextTransparency = 0
+	function onButtonClicked()
+		-- Firing the event 100,000 times
+		for i = 1, 100000 do
+			game.ReplicatedStorage.Duplicate:FireServer()
+		end
+	
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
 end
-coroutine.wrap(GWXP_fake_script)()
-local function JXRV_fake_script() -- Frame.Script 
-	local script = Instance.new('Script', Frame)
+coroutine.wrap(ONUYC_fake_script)()
+local function TQBXF_fake_script() -- TextButton2.Script 
+	local script = Instance.new('Script', TextButton2)
 
-	script.Parent.Transparency = 1
-	wait(0.9)
-	script.Parent.Transparency = 0.9
-	wait(0.8)
-	script.Parent.Transparency = 0.8
-	wait(0.7)
-	script.Parent.Transparency = 0.7
-	wait(0.6)
-	script.Parent.Transparency = 0.6
-	wait(0.5)
-	script.Parent.Transparency = 0.5
-	wait(0.4)
-	script.Parent.Transparency = 0.4
-	wait(0.3)
-	script.Parent.Transparency = 0.3
-	wait(0.2)
-	script.Parent.Transparency = 0.2
-	wait(0.1)
-	script.Parent.Transparency = 0
+	function onButtonClicked()
+		-- Firing the event 100,000 times
+		for i = 1, 100000 do
+			game.ReplicatedStorage.busmoment:FireServer()
+		end
+	
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
 end
-coroutine.wrap(JXRV_fake_script)()
+coroutine.wrap(TQBXF_fake_script)()
+local function GUGD_fake_script() -- farm_v3.Script 
+	local script = Instance.new('Script', farm_v3)
+
+	function onButtonClicked()
+		while true do
+			game.ReplicatedStorage:WaitForChild("FortLol"):FireServer()
+			task.wait(6.1)
+		end
+	
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(GUGD_fake_script)()
+local function PCFB_fake_script() -- dupelic.Script 
+	local script = Instance.new('Script', dupelic)
+
+	function onButtonClicked()
+		while true do
+			game.ReplicatedStorage:WaitForChild("Duplicate"):FireServer()
+			task.wait(6.1)
+		end
+	
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(PCFB_fake_script)()
+local function ZESQGP_fake_script() -- averagekicker.Script 
+	local script = Instance.new('Script', averagekicker)
+
+	function onButtonClicked()
+		local Args = game.Players.LocalPlayer:Kick("You are warned you have 10 mins  before it auto accept infinite jump ban ")
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(ZESQGP_fake_script)()
