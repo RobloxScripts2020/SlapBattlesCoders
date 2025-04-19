@@ -1,0 +1,166 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local GloveAccressss = Instance.new("ScreenGui")
+local menu = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local edgelord = Instance.new("TextButton")
+local kingSbeve = Instance.new("TextButton")
+local Train = Instance.new("TextButton")
+local TheControlOfAl = Instance.new("TextButton")
+local TheControlOfAl_2 = Instance.new("TextButton")
+
+-- Properties
+
+GloveAccressss.Name = "GloveAccressss"
+GloveAccressss.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+GloveAccressss.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+menu.Name = "menu"
+menu.Parent = GloveAccressss
+menu.BackgroundColor3 = Color3.new(0.0941177, 0.0941177, 0.0941177)
+menu.BorderColor3 = Color3.new(0, 0, 0)
+menu.BorderSizePixel = 0
+menu.Position = UDim2.new(0.00755724823, 0, 0.563168406, 0)
+menu.Size = UDim2.new(0, 145, 0, 192)
+
+ScrollingFrame.Parent = menu
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.BorderColor3 = Color3.new(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0, 0, -4.76837158e-07, 0)
+ScrollingFrame.Size = UDim2.new(0, 145, 0, 191)
+
+edgelord.Name = "edgelord"
+edgelord.Parent = ScrollingFrame
+edgelord.BackgroundColor3 = Color3.new(0.0509804, 0.0509804, 0.0509804)
+edgelord.BorderColor3 = Color3.new(0, 0, 0)
+edgelord.BorderSizePixel = 0
+edgelord.Position = UDim2.new(-0.00253611594, 0, 0.0415623859, 0)
+edgelord.Size = UDim2.new(0, 130, 0, 50)
+edgelord.Font = Enum.Font.RobotoCondensed
+edgelord.Text = "edgelord"
+edgelord.TextColor3 = Color3.new(1, 1, 1)
+edgelord.TextSize = 20
+edgelord.TextStrokeTransparency = 0
+
+kingSbeve.Name = "kingSbeve"
+kingSbeve.Parent = ScrollingFrame
+kingSbeve.BackgroundColor3 = Color3.new(0.0509804, 0.0509804, 0.0509804)
+kingSbeve.BorderColor3 = Color3.new(0, 0, 0)
+kingSbeve.BorderSizePixel = 0
+kingSbeve.Position = UDim2.new(-0.00253611594, 0, 0.172897577, 0)
+kingSbeve.Size = UDim2.new(0, 130, 0, 50)
+kingSbeve.Font = Enum.Font.RobotoCondensed
+kingSbeve.Text = "King Sbeve (rq40k"
+kingSbeve.TextColor3 = Color3.new(1, 1, 1)
+kingSbeve.TextSize = 20
+kingSbeve.TextStrokeTransparency = 0
+
+Train.Name = "Train"
+Train.Parent = ScrollingFrame
+Train.BackgroundColor3 = Color3.new(0.0509804, 0.0509804, 0.0509804)
+Train.BorderColor3 = Color3.new(0, 0, 0)
+Train.BorderSizePixel = 0
+Train.Position = UDim2.new(-0.00253611594, 0, 0.310572594, 0)
+Train.Size = UDim2.new(0, 130, 0, 50)
+Train.Font = Enum.Font.RobotoCondensed
+Train.Text = "train (needs bus)"
+Train.TextColor3 = Color3.new(1, 1, 1)
+Train.TextSize = 20
+Train.TextStrokeTransparency = 0
+
+TheControlOfAl.Name = "TheControlOfAl"
+TheControlOfAl.Parent = ScrollingFrame
+TheControlOfAl.BackgroundColor3 = Color3.new(0.0509804, 0.0509804, 0.0509804)
+TheControlOfAl.BorderColor3 = Color3.new(0, 0, 0)
+TheControlOfAl.BorderSizePixel = 0
+TheControlOfAl.Position = UDim2.new(-0.00253611594, 0, 0.636902809, 0)
+TheControlOfAl.Size = UDim2.new(0, 130, 0, 50)
+TheControlOfAl.Font = Enum.Font.RobotoCondensed
+TheControlOfAl.Text = "minecraft"
+TheControlOfAl.TextColor3 = Color3.new(1, 1, 1)
+TheControlOfAl.TextSize = 20
+TheControlOfAl.TextStrokeTransparency = 0
+
+TheControlOfAl_2.Name = "TheControlOfAl"
+TheControlOfAl_2.Parent = menu
+TheControlOfAl_2.BackgroundColor3 = Color3.new(0.0509804, 0.0509804, 0.0509804)
+TheControlOfAl_2.BackgroundTransparency = 1
+TheControlOfAl_2.BorderColor3 = Color3.new(0, 0, 0)
+TheControlOfAl_2.BorderSizePixel = 0
+TheControlOfAl_2.Position = UDim2.new(0.700912178, 0, 0.0483611412, 0)
+TheControlOfAl_2.Size = UDim2.new(0, 28, 0, -3)
+TheControlOfAl_2.Font = Enum.Font.RobotoCondensed
+TheControlOfAl_2.Text = "X"
+TheControlOfAl_2.TextColor3 = Color3.new(1, 1, 1)
+TheControlOfAl_2.TextSize = 20
+TheControlOfAl_2.TextStrokeTransparency = 0
+
+-- Scripts
+
+local function PAVHU_fake_script() -- edgelord.Script 
+	local script = Instance.new('Script', edgelord)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/IncognitoScripts/SlapBattles/refs/heads/main/Edgelord"))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(PAVHU_fake_script)()
+local function AGATYPK_fake_script() -- kingSbeve.Script 
+	local script = Instance.new('Script', kingSbeve)
+
+	function onButtonClicked()
+		game:WaitForChild("ReplicatedStorage").Sbeve:FireServer()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(AGATYPK_fake_script)()
+local function VGYQ_fake_script() -- Train.Script 
+	local script = Instance.new('Script', Train)
+
+	function onButtonClicked()
+		game:WaitForChild("ReplicatedStorage").busmoment:FireServer()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(VGYQ_fake_script)()
+local function GEBNABT_fake_script() -- TheControlOfAl.Script 
+	local script = Instance.new('Script', TheControlOfAl)
+
+	function onButtonClicked()
+		game:WaitForChild("ReplicatedStorage").brickl:FireServer()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(GEBNABT_fake_script)()
+local function ZMEAA_fake_script() -- TheControlOfAl_2.Script 
+	local script = Instance.new('Script', TheControlOfAl_2)
+
+	function onButtonClicked()
+		game.StarterGui.GloveAccressss:Destroy()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(ZMEAA_fake_script)()
