@@ -1,0 +1,41 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local Menu = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+
+-- Properties
+
+Menu.Name = "Menu"
+Menu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Menu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageButton.Parent = Menu
+ImageButton.BackgroundColor3 = Color3.new(0.0431373, 0.0431373, 0.0431373)
+ImageButton.BorderColor3 = Color3.new(0.0862745, 0.0862745, 0.0862745)
+ImageButton.BorderSizePixel = 4
+ImageButton.Position = UDim2.new(-0.0150287505, 0, 0.877339542, 0)
+ImageButton.Size = UDim2.new(0, 74, 0, 73)
+ImageButton.Image = "http://www.roblox.com/asset/?id=15561510543"
+
+-- Scripts
+
+local function VCDQLB_fake_script() -- ImageButton.Script 
+	local script = Instance.new('Script', ImageButton)
+
+	function onButtonClicked()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-1000/gloveaccessmenu"))()
+	end
+	
+	script.Parent.MouseButton1Click:connect(onButtonClicked)
+	
+end
+coroutine.wrap(VCDQLB_fake_script)()
