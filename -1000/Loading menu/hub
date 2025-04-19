@@ -169,7 +169,7 @@ local function GUGD_fake_script() -- farm_v3.Script
 
 	function onButtonClicked()
 		while true do
-			game.ReplicatedStorage:WaitForChild("FortLol"):FireServer()
+			game.ReplicatedStorage:WaitForChild("Fortlol"):FireServer()
 			task.wait(6.1)
 		end
 	
@@ -198,7 +198,7 @@ local function ZESQGP_fake_script() -- averagekicker.Script
 	local script = Instance.new('Script', averagekicker)
 
 	function onButtonClicked()
-		local Args = game.Players.LocalPlayer:Kick("You are warned you have 10 mins  before it auto accept infinite jump ban ")
+		local Args = game.Players.LocalPlayer:Kick("You are warned you have 10 mins  before it auto accept infinite jump ban [totally not gonna add  patcched options that dont work for pc users lol")
 	end
 	
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
