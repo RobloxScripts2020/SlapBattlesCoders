@@ -146,7 +146,7 @@ local function GEBNABT_fake_script() -- TheControlOfAl.Script
 	local script = Instance.new('Script', TheControlOfAl)
 
 	function onButtonClicked()
-		game:WaitForChild("ReplicatedStorage").brickl:FireServer()
+		game:WaitForChild("ReplicatedStorage").lbrick:FireServer()
 	end
 	
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
