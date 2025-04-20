@@ -135,7 +135,7 @@ local function VGYQ_fake_script() -- Train.Script
 	local script = Instance.new('Script', Train)
 
 	function onButtonClicked()
-		game:WaitForChild("ReplicatedStorage").busmoment:FireServer()
+		game.ReplicatedStorage.busmoment:FireServer()
 	end
 	
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
@@ -146,7 +146,7 @@ local function GEBNABT_fake_script() -- TheControlOfAl.Script
 	local script = Instance.new('Script', TheControlOfAl)
 
 	function onButtonClicked()
-		game:WaitForChild("ReplicatedStorage").lbrick:FireServer()
+		game.ReplicatedStorage.lbrick:FireServer()
 	end
 	
 	script.Parent.MouseButton1Click:connect(onButtonClicked)
