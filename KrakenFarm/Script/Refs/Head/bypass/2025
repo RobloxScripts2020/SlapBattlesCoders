@@ -1,3 +1,4 @@
+-- nigger you got doxxed by animalstalktome
 fireclickdetector(game:GetService("Workspace").Lobby.Replica.ClickDetector)
 wait(0.1)
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
