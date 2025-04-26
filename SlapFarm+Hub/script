@@ -1,0 +1,90 @@
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+screenGui.Name = "SlapFarmMenu"
+
+-- Frame
+local frame = Instance.new("Frame", screenGui)
+frame.Size = UDim2.new(0, 250, 0, 350)
+frame.Position = UDim2.new(0, 20, 0.5, -175)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+
+-- Rounded corners
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0, 8)
+
+-- Title Label
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "SLAP FARM V.1"
+title.TextColor3 = Color3.fromRGB(0, 162, 255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 24
+title.TextStrokeTransparency = 0.8
+
+-- Scrolling Frame
+local scroll = Instance.new("ScrollingFrame", frame)
+scroll.Size = UDim2.new(1, -20, 1, -60)
+scroll.Position = UDim2.new(0, 10, 0, 50)
+scroll.CanvasSize = UDim2.new(0, 0, 0, 400)
+scroll.ScrollBarThickness = 6
+scroll.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+scroll.BorderSizePixel = 0
+scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scroll.AutomaticSize = Enum.AutomaticSize.None
+scroll.ClipsDescendants = true
+
+-- Layout
+local listLayout = Instance.new("UIListLayout", scroll)
+listLayout.Padding = UDim.new(0, 6)
+listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+-- Button builder
+local function createFarmButton(name, callback)
+	local button = Instance.new("TextButton")
+	button.Size = UDim2.new(1, 0, 0, 40)
+	button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+	button.TextColor3 = Color3.new(1, 1, 1)
+	button.Font = Enum.Font.SourceSans
+	button.TextSize = 18
+	button.TextWrapped = true
+	button.Text = name
+	button.Parent = scroll
+
+	button.MouseButton1Click:Connect(function()
+		print(name .. " clicked")
+		if callback then
+			callback()
+		end
+	end)
+end
+
+-- Add Auto Slap button with your script
+createFarmButton("Auto Slap (need Infinite Yield, also bang ur alt go in default arean)", function()
+	-- Running your script
+	print("Running Auto Slap script...")
+	game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = "Tencell"
+	while true do
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/bhit"))()
+		wait(0.49)  -- Adjust as needed
+	end
+end)
+
+-- Update Auto Collect to Auto Collect Slapple and add the new script
+createFarmButton("Auto Collect Slapple", function()
+	-- Running the new Auto Collect Slapple script
+	print("Running Auto Collect Slapple script...")
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-1000/SlapFarm/V.50/unpatchable"))()
+end)
+
+-- Add other buttons (placeholders for now)
+createFarmButton("Auto Upgrade", function()
+	print("Auto Upgrade activated!")
+	-- Add Auto Upgrade logic here
+end)
+
+createFarmButton("Godmode Farm", function()
+	print("Godmode Farm activated!")
+	-- Add Godmode Farm logic here
+end)
