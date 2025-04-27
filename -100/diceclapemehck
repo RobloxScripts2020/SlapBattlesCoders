@@ -1,0 +1,5 @@
+local args = {
+    [1] = game:GetService("Players"):WaitForChild("Larrydancin").Character:FindFirstChild("Left Leg")
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("DiceHit"):FireServer(unpack(args))
