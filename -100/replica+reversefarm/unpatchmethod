@@ -7,7 +7,7 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(1.1)
 game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
-fireclickdetector(game:GetService("Workspace").Lobby.Reverse.ClickDetector)
+fireclickdetector(game:GetService("Workspace").Lobby.Dual.ClickDetector)
 for i = 1, 233000 do
     loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/dualhit"))()
 end
