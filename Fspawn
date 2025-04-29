@@ -1,0 +1,4 @@
+while true do
+game.ReplicatedStorage.Duplicate:FireServer()
+wait(9)
+end
