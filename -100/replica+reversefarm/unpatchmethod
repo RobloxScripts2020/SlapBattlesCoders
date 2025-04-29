@@ -7,8 +7,8 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(1.1)
 game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
-fireclickdetector(game:GetService("Workspace").Lobby.Dual.ClickDetector)
+fireclickdetector(game:GetService("Workspace").Lobby.Reverse.ClickDetector)
 while true do
-loadstring(game:HttpGet("https://github.com/RobloxScripts2020/SlapBattlesCoders/blob/main/-100/g"))()
-wait(.1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/reverse-hit"))()
+wait(.0)
 end
