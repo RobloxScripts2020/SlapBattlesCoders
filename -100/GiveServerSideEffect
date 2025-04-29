@@ -17,4 +17,3 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/Sla
 wait(.1)
 end
 wait(3)
-game.Workspace["ÅHeyitsme7358"].Humanoid.Health = 0
