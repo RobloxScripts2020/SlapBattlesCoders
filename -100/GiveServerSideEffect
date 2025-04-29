@@ -1,4 +1,5 @@
 --game.Players.LocalPlayer.Character.Humanoid.Health = 0
+--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
 fireclickdetector(game:GetService("Workspace").Lobby.Replica.ClickDetector)
 wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport2Frame.CFrame
@@ -8,8 +9,6 @@ wait(1.1)
 game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
 fireclickdetector(game:GetService("Workspace").Lobby.Reaper.ClickDetector)
-wait(2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
 wait(2)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/reaperhit"))()
 wait(1)
