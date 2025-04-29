@@ -9,7 +9,12 @@ wait(1.1)
 game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
 fireclickdetector(game:GetService("Workspace").Lobby.Reaper.ClickDetector)
+wait(1.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
 wait(2)
+while true do
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/reaperhit"))()
-wait(1)
+wait(.1)
+end
+wait(3)
 game.Workspace["ÅHeyitsme7358"].Humanoid.Health = 0
