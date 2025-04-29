@@ -12,3 +12,5 @@ wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport1.CFrame
 wait(2)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/reaperhit"))()
+wait(1)
+game.Workspace["ÅHeyitsme7358"].Humanoid.Health = 0
