@@ -7,8 +7,8 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(1.1)
 game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
-fireclickdetector(game:GetService("Workspace").Lobby.Boxer.ClickDetector)
+fireclickdetector(game:GetService("Workspace").Lobby.Mace.ClickDetector)
 while true do
-loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/boxerhit"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/DebugMaceBasey"))()
 wait(.1)
 end
