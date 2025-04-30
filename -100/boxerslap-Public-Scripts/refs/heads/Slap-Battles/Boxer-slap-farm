@@ -9,6 +9,6 @@ game.ReplicatedStorage.Duplicate:FireServer()
 wait(3)
 fireclickdetector(game:GetService("Workspace").Lobby.Boxer.ClickDetector)
 while true do
-loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/boxer"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/boxerhit"))()
 wait(.1)
 end
