@@ -1,0 +1,5 @@
+local args = {
+    [1] = workspace:WaitForChild("\195\133Heyitsme7358"):WaitForChild("Head")
+}
+
+game.ReplicatedStorage.Events.Boxing:FireServer(unpack(args))
