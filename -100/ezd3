@@ -1,1 +1,3 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Nice!",Text = "bypass anti cheat" ,Duration = 1000, Icon = "rbxthumb://type=Asset&id=9649923610&w=150&h=150",Button1 = "bypass"})
+wait(3)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/boxerslap-Public-Scripts/refs/heads/Slap-Battles/Boxer-slap-farm"))()
