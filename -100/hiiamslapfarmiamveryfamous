@@ -3,8 +3,8 @@ fireclickdetector(game:GetService("Workspace").Lobby.Baller.ClickDetector)
 wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport2Frame.CFrame
 wait(3)
-game.ReplicatedStorage.GeneralAbility:FireServer()
-wait(2)
+game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
+wait(2.9)
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(4.3)
 fireclickdetector(game:GetService("Workspace").Lobby.Mace.ClickDetector)
