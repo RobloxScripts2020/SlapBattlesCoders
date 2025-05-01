@@ -1,0 +1,4 @@
+while true do
+game.ReplicatedStorage.GeneralAbility:FireServer()
+wait(14)
+end
