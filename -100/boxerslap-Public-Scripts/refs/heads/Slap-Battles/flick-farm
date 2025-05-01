@@ -1,0 +1,16 @@
+--game.Players.LocalPlayer.Character.Humanoid.Health = 0
+game.Players.LocalPlayer.leaderstats.Slaps.Value = "13000"
+wait(2)
+fireclickdetector(game:GetService("Workspace").Lobby.Replica.ClickDetector)
+wait(2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Teleport2Frame.CFrame
+wait(3)
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1.1)
+game.ReplicatedStorage.Duplicate:FireServer()
+wait(3)
+fireclickdetector(game:GetService("Workspace").Lobby.Flick.ClickDetector)
+while true do
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/DebugMaceBasey"))()
+wait(.0)
+end
