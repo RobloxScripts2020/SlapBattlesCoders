@@ -1,6 +1,6 @@
 fireclickdetector(game:GetService("Workspace").Lobby.Baller.ClickDetector)
 wait(2)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/ballerslapfarm"))()
+game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 wait(2)
 while true do
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/ballerslapfarm"))()
