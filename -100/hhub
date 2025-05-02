@@ -1,13 +1,13 @@
 -- Load OrionLib
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
 
--- Check if OrionLib is loaded
+-- Check if OrionLib loaded successfully
 if not OrionLib then
     warn("Failed to load OrionLib")
     return
 end
 
--- Create the main window using OrionLib
+-- Create the main window
 local Window = OrionLib:MakeWindow({
     Name = "Slap Battles Hub",
     HidePremium = false,
@@ -15,26 +15,39 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "SlapBattlesHub"
 })
 
--- Create the "Main" tab
+-- Debugging output
+print("OrionLib window created.")
+
+-- Create Main Tab
 local MainTab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998", -- Example Icon ID
+    Name = "Main", -- Tab name
+    Icon = "rbxassetid://4483345998", -- Icon for the tab
     PremiumOnly = false
 })
 
--- Create a TextLabel for error messages
-local errorMessageLabel = MainTab:AddTextLabel({
-    Name = "ErrorMessageLabel",
-    Text = "Loading script...",
-    Size = UDim2.new(0, 300, 0, 50),
-    Position = UDim2.new(0, 50, 0, 100),
-    Font = Enum.Font.SourceSans,
-    TextSize = 18,
-    TextColor3 = Color3.fromRGB(255, 0, 0), -- Red color for error messages
+-- Add a Button to the Main tab
+MainTab:AddButton({
+    Name = "Test Button",  -- Button name
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Test",
+            Content = "Button clicked successfully!",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+        print("Test Button clicked!")
+    end
 })
 
--- Add a button to load the "Slap Farm" script
-MainTab:AddButton({
+-- Create Extras Tab
+local ExtrasTab = Window:MakeTab({
+    Name = "Extras",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add a Button to the Extras tab
+ExtrasTab:AddButton({
     Name = "Load Slap Farm Script",
     Callback = function()
         -- URL for the Slap Farm script
@@ -48,63 +61,26 @@ MainTab:AddButton({
         
         -- If the pcall fails, show an error message
         if not success then
-            errorMessageLabel.Text = "Failed to get HTTP request: " .. errorMessage
+            print("Failed to load Slap Farm Script:", errorMessage)
         else
-            errorMessageLabel.Text = "Slap Farm Script Loaded Successfully!"
+            print("Slap Farm Script loaded successfully!")
         end
     end
 })
 
--- Create a second tab for extra functionality
-local ExtrasTab = Window:MakeTab({
-    Name = "Extras",
-    Icon = "rbxassetid://6031071050",  -- Example Icon ID for Extras tab
-    PremiumOnly = false
-})
-
--- Add a button to check if the player has the "Mace" glove
+-- Add another button for another action
 ExtrasTab:AddButton({
-    Name = "Mace Slap Farm",
-    Callback = function()
-        local player = game.Players.LocalPlayer
-        local glove = player.leaderstats and player.leaderstats.Glove and player.leaderstats.Glove.Value
-
-        if glove == "mace" then
-            -- Load the Mace slap farm script
-            local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/hiiamslapfarmiamveryfamous"
-            local success, errorMessage = pcall(function()
-                local scriptContent = game:HttpGet(scriptURL)
-                loadstring(scriptContent)()
-            end)
-
-            -- If successful, show success message
-            if success then
-                errorMessageLabel.Text = "Mace Slap Farm Loaded!"
-            else
-                -- Show error if loading fails
-                errorMessageLabel.Text = "Failed to load Mace Slap Farm: " .. errorMessage
-            end
-        else
-            -- If player doesn't have the Mace glove equipped
-            errorMessageLabel.Text = "You need to equip the Mace glove to use this feature."
-        end
-    end
-})
-
--- Add another button for any additional functionality (for example)
-ExtrasTab:AddButton({
-    Name = "Test Button",
+    Name = "Test Button 2",
     Callback = function()
         OrionLib:MakeNotification({
-            Name = "Test",
-            Content = "This is just a test button!",
-            Image = "rbxassetid://4483345998",
+            Name = "Test 2",
+            Content = "This is Test Button 2!",
+            Image = "rbxassetid://6031071050",
             Time = 3
         })
-        print("Test Button clicked!")
+        print("Test Button 2 clicked!")
     end
 })
 
 -- Final message indicating the UI is ready
 print("Slap Battles Hub UI should now be visible.")
-
