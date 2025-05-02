@@ -7,42 +7,27 @@ if not OrionLib then
     return
 end
 
-print("OrionLib loaded successfully.")
-
 -- Create the main window
 local Window = OrionLib:MakeWindow({
-    Name = "Slap Battles Hub",  -- Changed back to original title
+    Name = "Slap Battles Hub",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "SlapBattlesHub"
 })
 
--- Check if the Window is created
-if not Window then
-    warn("Failed to create the window!")
-    return
-end
-
-print("Window created successfully.")
+-- Debugging output
+print("OrionLib window created.")
 
 -- Create Main Tab
 local MainTab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
+    Name = "Main", -- Tab name
+    Icon = "rbxassetid://4483345998", -- Icon for the tab
     PremiumOnly = false
 })
 
--- Check if the Main Tab is created successfully
-if not MainTab then
-    warn("Failed to create the Main Tab!")
-    return
-end
-
-print("Main Tab created successfully.")
-
--- Add the Test Button to MainTab
+-- Add a Button to the Main tab
 MainTab:AddButton({
-    Name = "Test Button",
+    Name = "Test Button",  -- Button name
     Callback = function()
         OrionLib:MakeNotification({
             Name = "Test",
@@ -54,14 +39,146 @@ MainTab:AddButton({
     end
 })
 
--- Spam Sword Button in Main Tab
-local swordSpamRunning = false
-local swordSpamThread
+-- Create Extras Tab
+local ExtrasTab = Window:MakeTab({
+    Name = "Extras",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
 
-MainTab:AddButton({
-    Name = "Spam Sword",
+-- Add a Button to the Extras tab
+ExtrasTab:AddButton({
+    Name = "Load Slap Farm Script",
     Callback = function()
-        if swordSpamRunning then
-            OrionLib:MakeNotification({
-                Name = "Spam Sword",
-                Content =
+        -- URL for the Slap Farm script
+        local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
+        
+        -- Attempt to load the script
+        local success, errorMessage = pcall(function()
+            local scriptContent = game:HttpGet(scriptURL)
+            loadstring(scriptContent)()
+        end)
+        
+        -- If the pcall fails, show an error message
+        if not success then
+            print("Failed to load Slap Farm Script:", errorMessage)
+        else
+            print("Slap Farm Script loaded successfully!")
+        end
+    end
+})
+
+-- Add another button for another action
+ExtrasTab:AddButton({
+    Name = "Test Button 2",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Test 2",
+            Content = "This is Test Button 2!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Test Button 2 clicked!")
+    end
+})
+
+-- Create "Slap Battles Mastery Farms" Tab (Tab 3)
+local MasteryFarmsTab = Window:MakeTab({
+    Name = "Slap Battles Mastery Farms",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add a Button to Mastery Farms Tab
+MasteryFarmsTab:AddButton({
+    Name = "Start Mastery Farm",  -- Button name
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has started!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm started!")
+    end
+})
+
+-- Add another Button to Mastery Farms Tab
+MasteryFarmsTab:AddButton({
+    Name = "Stop Mastery Farm",  -- Button name
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has stopped.",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm stopped!")
+    end
+})
+
+-- Add a TextLabel to Mastery Farms Tab (Optional)
+MasteryFarmsTab:AddTextLabel({
+    Name = "MasteryFarmInfo",
+    Text = "Click the buttons to start or stop Mastery Farm.",
+    Size = UDim2.new(0, 400, 0, 50),
+    Position = UDim2.new(0, 50, 0, 150),
+    Font = Enum.Font.SourceSans,
+    TextSize = 18,
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- White color
+})
+
+-- Create "Anti" Tab (Tab 4)
+local AntiTab = Window:MakeTab({
+    Name = "Anti",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add a Button to the Anti tab
+AntiTab:AddButton({
+    Name = "Anti Exploit",  -- Button name
+    Callback = function()
+        -- Example anti-exploit action (placeholder for now)
+        OrionLib:MakeNotification({
+            Name = "Anti Exploit",
+            Content = "This is a placeholder for anti-exploit feature!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Anti Exploit feature activated!")  -- Can be replaced with any specific anti-exploit code
+    end
+})
+
+-- Add a TextLabel to Anti tab (Optional info)
+AntiTab:AddTextLabel({
+    Name = "AntiInfo",
+    Text = "This is a placeholder for anti-exploit features.",
+    Size = UDim2.new(0, 400, 0, 50),
+    Position = UDim2.new(0, 50, 0, 150),
+    Font = Enum.Font.SourceSans,
+    TextSize = 18,
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- White color
+})
+
+-- Add a TextButton for Anti Slap Battles Anti-Cheat
+AntiTab:AddButton({
+    Name = "Anti Slap Battles Anti-Cheat (Warning: Clicking this could get you banned)",
+    Callback = function()
+        -- Show warning notification
+        OrionLib:MakeNotification({
+            Name = "Warning",
+            Content = "Clicking this button could result in a ban. Proceed with caution.",
+            Image = "rbxassetid://6031071050",
+            Time = 5
+        })
+        
+        -- Kick the player with a warning message
+        game.Players.LocalPlayer:Kick("This is for testing reason you shouldn't be abusing this option.")
+        
+        print("Anti Slap Battles Anti-Cheat button clicked. Player kicked with warning!")
+    end
+})
+
+-- Final message indicating the UI is ready
+print("Slap Battles Hub UI with 'Slap Battles Mastery Farms' and 'Anti' tab is now visible.")
