@@ -9,9 +9,9 @@ end
 
 print("OrionLib loaded successfully.")
 
--- Create the main window with the "Player Executor" title
+-- Create the main window
 local Window = OrionLib:MakeWindow({
-    Name = "Player Executor - Slap Battles Hub", -- Display "Player Executor" at the top
+    Name = "Slap Battles Hub",  -- Changed back to original title
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "SlapBattlesHub"
@@ -24,18 +24,6 @@ if not Window then
 end
 
 print("Window created successfully.")
-
--- Wait a moment for UI to load and check for the window's visibility
-wait(1)
-
--- Ensure that the window is visible (check the UI component directly)
-local OrionUI = game:GetService("CoreGui"):FindFirstChild("OrionUI")
-if not OrionUI then
-    warn("OrionUI is not found in CoreGui. The UI might not be visible.")
-    return
-else
-    print("OrionUI is visible in CoreGui.")
-end
 
 -- Create Main Tab
 local MainTab = Window:MakeTab({
@@ -58,4 +46,22 @@ MainTab:AddButton({
     Callback = function()
         OrionLib:MakeNotification({
             Name = "Test",
-            Content = "Button clicked su
+            Content = "Button clicked successfully!",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+        print("Test Button clicked!")
+    end
+})
+
+-- Spam Sword Button in Main Tab
+local swordSpamRunning = false
+local swordSpamThread
+
+MainTab:AddButton({
+    Name = "Spam Sword",
+    Callback = function()
+        if swordSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Spam Sword",
+                Content =
