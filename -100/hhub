@@ -17,108 +17,42 @@ local Window = OrionLib:MakeWindow({
 
 print("OrionLib window created.")
 
--- Create Main Tab
-local MainTab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-MainTab:AddButton({
-    Name = "Test Button",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Test",
-            Content = "Button clicked successfully!",
-            Image = "rbxassetid://4483345998",
-            Time = 3
-        })
-        print("Test Button clicked!")
-    end
-})
-
--- Create Extras Tab
-local ExtrasTab = Window:MakeTab({
-    Name = "Extras",
+-- Create Misc Tab
+local MiscTab = Window:MakeTab({
+    Name = "Misc",
     Icon = "rbxassetid://6031071050",
     PremiumOnly = false
 })
 
-ExtrasTab:AddButton({
-    Name = "Load Slap Farm Script",
-    Callback = function()
-        local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
-        local success, errorMessage = pcall(function()
-            local scriptContent = game:HttpGet(scriptURL)
-            loadstring(scriptContent)()
-        end)
-
-        if not success then
-            print("Failed to load Slap Farm Script:", errorMessage)
-        else
-            print("Slap Farm Script loaded successfully!")
-        end
-    end
-})
-
-ExtrasTab:AddButton({
-    Name = "Test Button 2",
+-- Add Misc Button Example
+MiscTab:AddButton({
+    Name = "Test Misc Button",
     Callback = function()
         OrionLib:MakeNotification({
-            Name = "Test 2",
-            Content = "This is Test Button 2!",
+            Name = "Misc Button",
+            Content = "You clicked the Misc Button!",
             Image = "rbxassetid://6031071050",
             Time = 3
         })
-        print("Test Button 2 clicked!")
+        print("Misc Button clicked!")
     end
 })
 
--- Create Slap Battles Mastery Farms Tab
-local MasteryFarmsTab = Window:MakeTab({
-    Name = "Slap Battles Mastery Farms",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
+-- Add Spam Swordfighter button under Misc Tab
+local swordfighterSpamRunning = false
+local swordfighterSpamThread
+local swordSpamRunning = false
+local swordSpamThread
 
-MasteryFarmsTab:AddButton({
-    Name = "Start Mastery Farm",
+-- Create options for spam ability
+MiscTab:AddButton({
+    Name = "Spam Swordfighter Ability",
     Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Mastery Farming",
-            Content = "Mastery farm has started!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Mastery farm started!")
-    end
-})
-
-MasteryFarmsTab:AddButton({
-    Name = "Stop Mastery Farm",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Mastery Farming",
-            Content = "Mastery farm has stopped.",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Mastery farm stopped!")
-    end
-})
-
--- Add Bus Mastery Spam functionality
-local busSpamRunning = false
-local busSpamThread
-
-MasteryFarmsTab:AddButton({
-    Name = "Bus Mastery Spam",
-    Callback = function()
-        -- Check if player has "Bus" or "Train" glove equipped
-        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Bus" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Train" then
-            if busSpamRunning then
+        -- Check if the player has "Swordfighter" or "Retro" equipped
+        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Swordfighter" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Retro" then
+            if swordfighterSpamRunning then
                 OrionLib:MakeNotification({
-                    Name = "Bus Mastery",
+                    Name = "Swordfighter Ability Spam",
                     Content = "Already running!",
                     Image = "rbxassetid://6031071050",
                     Time = 3
@@ -127,48 +61,97 @@ MasteryFarmsTab:AddButton({
             end
 
             OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Bus Mastery Spam Activated!",
+                Name = "Swordfighter Ability Spam",
+                Content = "Swordfighter Ability Spam Activated!",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
 
-            busSpamRunning = true
-            busSpamThread = coroutine.create(function()
-                while busSpamRunning do
+            swordfighterSpamRunning = true
+            swordfighterSpamThread = coroutine.create(function()
+                while swordfighterSpamRunning do
                     pcall(function()
-                        game.ReplicatedStorage.busmoment:FireServer()
+                        game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
                     end)
-                    wait(8.99)
+                    wait(0.01) -- Adjust if needed
                 end
             end)
-            coroutine.resume(busSpamThread)
+            coroutine.resume(swordfighterSpamThread)
         else
             OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Lil bro you need bus equipped or train, that's impossible to equip lmao",
+                Name = "Swordfighter Ability Spam",
+                Content = "You don't have 'Swordfighter' or 'Retro' equipped, bozo!",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
-            print("Player does not have 'Bus' or 'Train' glove equipped!")
+            print("Player does not have 'Swordfighter' or 'Retro' glove equipped!")
         end
     end
 })
 
-MasteryFarmsTab:AddButton({
-    Name = "Stop Bus Mastery Spam",
+-- Add Spam Sword button under Misc Tab
+MiscTab:AddButton({
+    Name = "Spam Sword",
     Callback = function()
-        if busSpamRunning then
-            busSpamRunning = false
+        -- Check if the player has "Swordfighter" or "Retro" equipped
+        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Swordfighter" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Retro" then
+            if swordSpamRunning then
+                OrionLib:MakeNotification({
+                    Name = "Sword Spam",
+                    Content = "Already running!",
+                    Image = "rbxassetid://6031071050",
+                    Time = 3
+                })
+                return
+            end
+
             OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Bus Mastery Spam Stopped!",
+                Name = "Sword Spam",
+                Content = "Sword Spam Activated!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+
+            swordSpamRunning = true
+            swordSpamThread = coroutine.create(function()
+                while swordSpamRunning do
+                    local args = {
+                        "swing_sword"
+                    }
+                    pcall(function()
+                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("swordevent"):FireServer(unpack(args))
+                    end)
+                    wait(0.01) -- Adjust if needed
+                end
+            end)
+            coroutine.resume(swordSpamThread)
+        else
+            OrionLib:MakeNotification({
+                Name = "Sword Spam",
+                Content = "You don't have 'Swordfighter' or 'Retro' equipped, bozo!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            print("Player does not have 'Swordfighter' or 'Retro' glove equipped!")
+        end
+    end
+})
+
+-- Add Stop Swordfighter Ability Spam functionality
+MiscTab:AddButton({
+    Name = "Stop Swordfighter Ability Spam",
+    Callback = function()
+        if swordfighterSpamRunning then
+            swordfighterSpamRunning = false
+            OrionLib:MakeNotification({
+                Name = "Swordfighter Ability Spam",
+                Content = "Swordfighter Ability Spam Stopped!",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
         else
             OrionLib:MakeNotification({
-                Name = "Bus Mastery",
+                Name = "Swordfighter Ability Spam",
                 Content = "It's not running.",
                 Image = "rbxassetid://6031071050",
                 Time = 3
@@ -177,73 +160,25 @@ MasteryFarmsTab:AddButton({
     end
 })
 
--- Add Fort Mastery V2.0 functionality
-MasteryFarmsTab:AddButton({
-    Name = "Fort Mastery V2.0",
+-- Add Stop Sword Spam functionality
+MiscTab:AddButton({
+    Name = "Stop Sword Spam",
     Callback = function()
-        -- Check if player has the "Fort" glove equipped
-        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort" then
+        if swordSpamRunning then
+            swordSpamRunning = false
             OrionLib:MakeNotification({
-                Name = "Fort Mastery",
-                Content = "Fort Mastery V2.0 Activated!",
+                Name = "Sword Spam",
+                Content = "Sword Spam Stopped!",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
-
-            -- Start the Fort spam loop
-            local fortSpamRunning = true
-            local fortSpamThread = coroutine.create(function()
-                while fortSpamRunning do
-                    pcall(function()
-                        game.ReplicatedStorage.Fortlol:FireServer()
-                    end)
-                    wait(4.99)
-                end
-            end)
-            coroutine.resume(fortSpamThread)
         else
             OrionLib:MakeNotification({
-                Name = "Fort Mastery V2.0",
-                Content = "You don't got Fort equipped, bozo!",
+                Name = "Sword Spam",
+                Content = "It's not running.",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
-            print("Player does not have 'Fort' glove equipped!")
-        end
-    end
-})
-
--- Create Anti Tab
-local AntiTab = Window:MakeTab({
-    Name = "Anti",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
--- Add Bypass Anti-Cheat button to Anti Tab
-AntiTab:AddButton({
-    Name = "Bypass Anti-Cheat",
-    Callback = function()
-        -- Check if player has the "Fort" glove equipped before proceeding
-        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort" then
-            -- Fire the Piano event
-            game.ReplicatedStorage.Piano:FireServer()
-            -- Show notification that bypass was successful
-            OrionLib:MakeNotification({
-                Name = "Bypass Anti-Cheat",
-                Content = "Successfully bypassed anti-cheat for " .. game.Players.LocalPlayer.Name,
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-            print("Bypassed anti-cheat successfully for " .. game.Players.LocalPlayer.Name)
-        else
-            OrionLib:MakeNotification({
-                Name = "Bypass Anti-Cheat",
-                Content = "You need the 'Fort' glove to bypass anti-cheat!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-            print("Player does not have 'Fort' glove equipped!")
         end
     end
 })
