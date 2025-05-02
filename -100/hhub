@@ -101,6 +101,63 @@ RetroAdminTab:AddButton({
     end
 })
 
+-- Fling Ability Button
+RetroAdminTab:AddButton({
+    Name = "Fling",
+    Callback = function()
+        local args = {
+            [1] = "Fling"
+        }
+        -- Fire the AdminAbility event with the Fling argument
+        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
+        OrionLib:MakeNotification({
+            Name = "Fling Ability",
+            Content = "Fling ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Fling ability activated!")
+    end
+})
+
+-- Anvil Ability Button
+RetroAdminTab:AddButton({
+    Name = "Anvil",
+    Callback = function()
+        local args = {
+            [1] = "Anvil"
+        }
+        -- Fire the AdminAbility event with the Anvil argument
+        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
+        OrionLib:MakeNotification({
+            Name = "Anvil Ability",
+            Content = "Anvil ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Anvil ability activated!")
+    end
+})
+
+-- Invisibility Ability Button
+RetroAdminTab:AddButton({
+    Name = "Invisibility",
+    Callback = function()
+        local args = {
+            [1] = "Invisibility"
+        }
+        -- Fire the AdminAbility event with the Invisibility argument
+        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
+        OrionLib:MakeNotification({
+            Name = "Invisibility Ability",
+            Content = "Invisibility ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Invisibility ability activated!")
+    end
+})
+
 -- Create Extras Tab
 local ExtrasTab = Window:MakeTab({
     Name = "Extras",
