@@ -9,14 +9,9 @@ end
 
 print("OrionLib loaded successfully.")
 
--- Get the number of players in the server
-local function getPlayerCount()
-    return #game.Players:GetPlayers()
-end
-
 -- Create the main window with the "Player Executor" title
 local Window = OrionLib:MakeWindow({
-    Name = "Player Executor - Slap Battles Hub | Players: " .. getPlayerCount(), -- Display Player Count
+    Name = "Player Executor - Slap Battles Hub", -- Display "Player Executor" at the top
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "SlapBattlesHub"
@@ -63,32 +58,4 @@ MainTab:AddButton({
     Callback = function()
         OrionLib:MakeNotification({
             Name = "Test",
-            Content = "Button clicked successfully!",
-            Image = "rbxassetid://4483345998",
-            Time = 3
-        })
-        print("Test Button clicked!")
-    end
-})
-
--- Add a function to update the player count in the window title
-local function updatePlayerCount()
-    Window:SetName("Player Executor - Slap Battles Hub | Players: " .. getPlayerCount())
-end
-
--- Update player count every 5 seconds
-while true do
-    updatePlayerCount()
-    wait(5)  -- Update every 5 seconds
-end
-
--- Spam Sword Button in Main Tab
-local swordSpamRunning = false
-local swordSpamThread
-
-MainTab:AddButton({
-    Name = "Spam Sword",
-    Callback = function()
-        if swordSpamRunning then
-            OrionLib:MakeNotification({
-                Name = "Spam Sword",
+            Content = "Button clicked su
