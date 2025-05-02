@@ -17,6 +17,83 @@ local Window = OrionLib:MakeWindow({
 
 print("OrionLib window created.")
 
+-- Create Main Tab
+local MainTab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+MainTab:AddButton({
+    Name = "Test Button",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Test",
+            Content = "Button clicked successfully!",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+        print("Test Button clicked!")
+    end
+})
+
+-- Create Extras Tab
+local ExtrasTab = Window:MakeTab({
+    Name = "Extras",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+ExtrasTab:AddButton({
+    Name = "Load Slap Farm Script",
+    Callback = function()
+        local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
+        local success, errorMessage = pcall(function()
+            local scriptContent = game:HttpGet(scriptURL)
+            loadstring(scriptContent)()
+        end)
+
+        if not success then
+            print("Failed to load Slap Farm Script:", errorMessage)
+        else
+            print("Slap Farm Script loaded successfully!")
+        end
+    end
+})
+
+-- Create Slap Battles Mastery Farms Tab
+local MasteryFarmsTab = Window:MakeTab({
+    Name = "Slap Battles Mastery Farms",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Start Mastery Farm",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has started!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm started!")
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Mastery Farm",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has stopped.",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm stopped!")
+    end
+})
+
 -- Create Misc Tab
 local MiscTab = Window:MakeTab({
     Name = "Misc",
@@ -24,132 +101,40 @@ local MiscTab = Window:MakeTab({
     PremiumOnly = false
 })
 
--- TextLabel for displaying messages
-local messageLabel = MiscTab:AddTextLabel({
-    Name = "MessageLabel",
-    Text = "", -- Initially empty
-    TextColor = Color3.fromRGB(255, 0, 0), -- Red text color
-    Font = Enum.Font.SourceSansBold,
-    TextSize = 18,
-    TextTransparency = 0,
-    Visible = false, -- Initially hidden
-})
-
--- Function to display messages on the TextLabel
-local function displayMessage(message)
-    messageLabel.Text = message
-    messageLabel.Visible = true
-end
-
--- Add Spam Swordfighter button under Misc Tab
-local swordfighterSpamRunning = false
-local swordfighterSpamThread
-local swordSpamRunning = false
-local swordSpamThread
-
--- Create options for spam ability
+-- Spam Swordfighter Ability Option
 MiscTab:AddButton({
     Name = "Spam Swordfighter Ability",
     Callback = function()
-        -- Check if the player has "Swordfighter" or "Retro" equipped
         if game.Players.LocalPlayer.leaderstats.Glove.Value == "Swordfighter" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Retro" then
-            if swordfighterSpamRunning then
-                OrionLib:MakeNotification({
-                    Name = "Swordfighter Ability Spam",
-                    Content = "Already running!",
-                    Image = "rbxassetid://6031071050",
-                    Time = 3
-                })
-                return
+            while true do
+                game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
+                wait(0.01)
             end
-
+        else
             OrionLib:MakeNotification({
-                Name = "Swordfighter Ability Spam",
-                Content = "Swordfighter Ability Spam Activated!",
+                Name = "Glove Not Equipped",
+                Content = "Nice try bozo, try getting the badges tab that's coming later soon.",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
-
-            swordfighterSpamRunning = true
-            swordfighterSpamThread = coroutine.create(function()
-                while swordfighterSpamRunning do
-                    pcall(function()
-                        game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
-                    end)
-                    wait(0.01) -- Adjust if needed
-                end
-            end)
-            coroutine.resume(swordfighterSpamThread)
-        else
-            -- Display custom message if the player does not have the correct glove
-            displayMessage("Nice try bozo, try get badges tab that coming later soon")
-            wait(3) -- Message will be shown for 3 seconds
-            displayMessage("") -- Clear message
         end
     end
 })
 
--- Add Spam Sword button under Misc Tab
+-- Spam Sword Option
 MiscTab:AddButton({
     Name = "Spam Sword",
     Callback = function()
-        -- Check if the player has "Swordfighter" or "Retro" equipped
         if game.Players.LocalPlayer.leaderstats.Glove.Value == "Swordfighter" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Retro" then
-            if swordSpamRunning then
-                OrionLib:MakeNotification({
-                    Name = "Sword Spam",
-                    Content = "Already running!",
-                    Image = "rbxassetid://6031071050",
-                    Time = 3
-                })
-                return
+            while true do
+                local args = {"swing_sword"}
+                game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("swordevent"):FireServer(unpack(args))
+                wait(0.01)
             end
-
-            OrionLib:MakeNotification({
-                Name = "Sword Spam",
-                Content = "Sword Spam Activated!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-
-            swordSpamRunning = true
-            swordSpamThread = coroutine.create(function()
-                while swordSpamRunning do
-                    local args = {
-                        "swing_sword"
-                    }
-                    pcall(function()
-                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("swordevent"):FireServer(unpack(args))
-                    end)
-                    wait(0.01) -- Adjust if needed
-                end
-            end)
-            coroutine.resume(swordSpamThread)
-        else
-            -- Display custom message if the player does not have the correct glove
-            displayMessage("Nice try bozo, try get badges tab that coming later soon")
-            wait(3) -- Message will be shown for 3 seconds
-            displayMessage("") -- Clear message
-        end
-    end
-})
-
--- Add Stop Swordfighter Ability Spam functionality
-MiscTab:AddButton({
-    Name = "Stop Swordfighter Ability Spam",
-    Callback = function()
-        if swordfighterSpamRunning then
-            swordfighterSpamRunning = false
-            OrionLib:MakeNotification({
-                Name = "Swordfighter Ability Spam",
-                Content = "Swordfighter Ability Spam Stopped!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
         else
             OrionLib:MakeNotification({
-                Name = "Swordfighter Ability Spam",
-                Content = "It's not running.",
+                Name = "Glove Not Equipped",
+                Content = "Nice try bozo, try getting the badges tab that's coming later soon.",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
@@ -157,27 +142,5 @@ MiscTab:AddButton({
     end
 })
 
--- Add Stop Sword Spam functionality
-MiscTab:AddButton({
-    Name = "Stop Sword Spam",
-    Callback = function()
-        if swordSpamRunning then
-            swordSpamRunning = false
-            OrionLib:MakeNotification({
-                Name = "Sword Spam",
-                Content = "Sword Spam Stopped!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-        else
-            OrionLib:MakeNotification({
-                Name = "Sword Spam",
-                Content = "It's not running.",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-        end
-    end
-})
-
+-- Final message indicating the UI is ready
 print("Slap Battles Hub UI is fully initialized.")
