@@ -256,5 +256,71 @@ AntiTab:AddButton({
     end
 })
 
+-- Create Abilities Tab
+local AbilitiesTab = Window:MakeTab({
+    Name = "Abilities",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+-- Add button for Swordfighter ability
+AbilitiesTab:AddButton({
+    Name = "Use Swordfighter Ability",
+    Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Swordfighter" and game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Retro" then
+            OrionLib:MakeNotification({
+                Name = "Swordfighter Ability",
+                Content = "Nice try bozo, try get badges tab that's coming soon.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Swordfighter Ability",
+            Content = "Swordfighter ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        -- Start spamming the ability
+        while true do
+            game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
+            wait(0.01)
+        end
+    end
+})
+
+-- Add button for Sword Swing ability
+AbilitiesTab:AddButton({
+    Name = "Use Sword Swing",
+    Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Swordfighter" and game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Retro" then
+            OrionLib:MakeNotification({
+                Name = "Sword Swing",
+                Content = "Nice try bozo, try get badges tab that's coming soon.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Sword Swing",
+            Content = "Sword Swing activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        -- Start spamming the sword swing event
+        while true do
+            local args = { "swing_sword" }
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("swordevent"):FireServer(unpack(args))
+            wait(0.01)
+        end
+    end
+})
+
 -- Final message indicating the UI is ready
-print("Slap Battles Hub UI with Anti-Cheat Bypass, Bus Mastery, and Fort Mastery Spam functionalities is fully initialized.")
+print("Slap Battles Hub UI with Anti-Cheat Bypass, Bus Mastery, Fort Mastery Spam, Swordfighter Ability, Sword Swing, and Abilities Tab functionalities is fully initialized.")
