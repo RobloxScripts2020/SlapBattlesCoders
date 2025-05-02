@@ -7,8 +7,6 @@ if not OrionLib then
     return
 end
 
-print("OrionLib loaded successfully.")
-
 -- Create the main window
 local Window = OrionLib:MakeWindow({
     Name = "Slap Battles Hub",
@@ -17,30 +15,19 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "SlapBattlesHub"
 })
 
-if not Window then
-    warn("Failed to create the window!")
-    return
-end
-
-print("Window created successfully.")
+-- Debugging output
+print("OrionLib window created.")
 
 -- Create Main Tab
 local MainTab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
+    Name = "Main", -- Tab name
+    Icon = "rbxassetid://4483345998", -- Icon for the tab
     PremiumOnly = false
 })
 
-if not MainTab then
-    warn("Failed to create the Main Tab!")
-    return
-end
-
-print("Main Tab created successfully.")
-
--- Add the Test Button to MainTab
+-- Add a Button to the Main tab
 MainTab:AddButton({
-    Name = "Test Button",
+    Name = "Test Button",  -- Button name
     Callback = function()
         OrionLib:MakeNotification({
             Name = "Test",
@@ -52,28 +39,48 @@ MainTab:AddButton({
     end
 })
 
--- Add the Retro & Admin Ability Tab
-local RetroAdminTab = Window:MakeTab({
-    Name = "Retro & Admin Ability",
-    Icon = "rbxassetid://6031071050",
+-- Create Extras Tab
+local ExtrasTab = Window:MakeTab({
+    Name = "Extras",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
     PremiumOnly = false
 })
 
--- Adding a sample ability button
-RetroAdminTab:AddButton({
-    Name = "Ban Hammer",
+-- Add a Button to the Extras tab
+ExtrasTab:AddButton({
+    Name = "Load Slap Farm Script",
     Callback = function()
-        local args = { [1] = "Ban Hammer" }
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
+        -- URL for the Slap Farm script
+        local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
+        
+        -- Attempt to load the script
+        local success, errorMessage = pcall(function()
+            local scriptContent = game:HttpGet(scriptURL)
+            loadstring(scriptContent)()
+        end)
+        
+        -- If the pcall fails, show an error message
+        if not success then
+            print("Failed to load Slap Farm Script:", errorMessage)
+        else
+            print("Slap Farm Script loaded successfully!")
+        end
+    end
+})
+
+-- Add another button for another action
+ExtrasTab:AddButton({
+    Name = "Test Button 2",
+    Callback = function()
         OrionLib:MakeNotification({
-            Name = "Ban Hammer",
-            Content = "Ban Hammer ability activated!",
+            Name = "Test 2",
+            Content = "This is Test Button 2!",
             Image = "rbxassetid://6031071050",
             Time = 3
         })
-        print("Ban Hammer activated!")
+        print("Test Button 2 clicked!")
     end
 })
 
 -- Final message indicating the UI is ready
-print("Slap Battles Hub UI initialized successfully.")
+print("Slap Battles Hub UI should now be visible.")
