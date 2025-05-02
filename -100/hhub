@@ -1,312 +1,106 @@
--- Load OrionLib
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
-
--- Check if OrionLib loaded successfully
-if not OrionLib then
-    warn("Failed to load OrionLib")
-    return
-end
-
--- Create the main window
-local Window = OrionLib:MakeWindow({
-    Name = "Slap Battles Hub",
-    HidePremium = false,
-    SaveConfig = true,
-    ConfigFolder = "SlapBattlesHub"
-})
-
-print("OrionLib window created.")
-
--- Create Main Tab
-local MainTab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-MainTab:AddButton({
-    Name = "Test Button",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Test",
-            Content = "Button clicked successfully!",
-            Image = "rbxassetid://4483345998",
-            Time = 3
-        })
-        print("Test Button clicked!")
-    end
-})
-
--- Create Retro & Admin Ability Tab
-local RetroAdminTab = Window:MakeTab({
-    Name = "Retro & Admin Ability",
+-- Abilities Tab
+local AbilitiesTab = Window:MakeTab({
+    Name = "Abilities",
     Icon = "rbxassetid://6031071050",
     PremiumOnly = false
 })
 
--- Ban Hammer Button
-RetroAdminTab:AddButton({
-    Name = "Ban Hammer",
+-- Sword Spammer Toggle
+local swordSpamEnabled = false
+AbilitiesTab:AddButton({
+    Name = "Toggle Sword Spam",
     Callback = function()
-        local args = {
-            [1] = "Ban Hammer"
-        }
-        -- Fire the RetroAbility event with the Ban Hammer argument
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
+        local glove = game.Players.LocalPlayer.leaderstats.Glove.Value
+        if glove ~= "SwordFighter" then
+            OrionLib:MakeNotification({
+                Name = "Sword Error",
+                Content = "You need the 'SwordFighter' glove and badge equipped.",
+                Image = "rbxassetid://6031071050",
+                Time = 4
+            })
+            return
+        end
+
+        swordSpamEnabled = not swordSpamEnabled
         OrionLib:MakeNotification({
-            Name = "Ban Hammer",
-            Content = "Ban Hammer ability activated!",
+            Name = "Sword Spammer",
+            Content = swordSpamEnabled and "Sword swing spam started!" or "Sword swing spam stopped!",
             Image = "rbxassetid://6031071050",
             Time = 3
         })
-        print("Ban Hammer activated!")
-    end
-})
 
--- Rocket Launcher Button
-RetroAdminTab:AddButton({
-    Name = "Rocket Launcher",
-    Callback = function()
-        local args = {
-            [1] = "Rocket Launcher"
-        }
-        -- Fire the RetroAbility event with the Rocket Launcher argument
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Rocket Launcher",
-            Content = "Rocket Launcher ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Rocket Launcher activated!")
-    end
-})
-
--- Bomb Ability Button
-RetroAdminTab:AddButton({
-    Name = "Bomb Ability",
-    Callback = function()
-        local args = {
-            [1] = "Bomb"
-        }
-        -- Fire the RetroAbility event with the Bomb argument
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Bomb Ability",
-            Content = "Bomb ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Bomb ability activated!")
-    end
-})
-
--- Fling Ability Button
-RetroAdminTab:AddButton({
-    Name = "Fling",
-    Callback = function()
-        local args = {
-            [1] = "Fling"
-        }
-        -- Fire the AdminAbility event with the Fling argument
-        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Fling Ability",
-            Content = "Fling ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Fling ability activated!")
-    end
-})
-
--- Anvil Ability Button
-RetroAdminTab:AddButton({
-    Name = "Anvil",
-    Callback = function()
-        local args = {
-            [1] = "Anvil"
-        }
-        -- Fire the AdminAbility event with the Anvil argument
-        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Anvil Ability",
-            Content = "Anvil ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Anvil ability activated!")
-    end
-})
-
--- Invisibility Ability Button
-RetroAdminTab:AddButton({
-    Name = "Invisibility",
-    Callback = function()
-        local args = {
-            [1] = "Invisibility"
-        }
-        -- Fire the AdminAbility event with the Invisibility argument
-        game:GetService("ReplicatedStorage").AdminAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Invisibility Ability",
-            Content = "Invisibility ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Invisibility ability activated!")
-    end
-})
-
--- Create Extras Tab
-local ExtrasTab = Window:MakeTab({
-    Name = "Extras",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
-ExtrasTab:AddButton({
-    Name = "Load Slap Farm Script",
-    Callback = function()
-        local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
-        local success, errorMessage = pcall(function()
-            local scriptContent = game:HttpGet(scriptURL)
-            loadstring(scriptContent)()
-        end)
-
-        if not success then
-            print("Failed to load Slap Farm Script:", errorMessage)
-        else
-            print("Slap Farm Script loaded successfully!")
+        if swordSpamEnabled then
+            coroutine.wrap(function()
+                while swordSpamEnabled do
+                    pcall(function()
+                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("swordevent"):FireServer("swing_sword")
+                    end)
+                    wait(0.1)
+                end
+            end)()
         end
     end
 })
 
--- Create Slap Battles Mastery Farms Tab
-local MasteryFarmsTab = Window:MakeTab({
-    Name = "Slap Battles Mastery Farms",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
-MasteryFarmsTab:AddButton({
-    Name = "Start Mastery Farm",
+-- Ability Spammer Toggle
+local abilitySpamEnabled = false
+AbilitiesTab:AddButton({
+    Name = "Toggle Ability Spam",
     Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Mastery Farming",
-            Content = "Mastery farm has started!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Mastery farm started!")
-    end
-})
-
-MasteryFarmsTab:AddButton({
-    Name = "Stop Mastery Farm",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Mastery Farming",
-            Content = "Mastery farm has stopped.",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Mastery farm stopped!")
-    end
-})
-
--- Bus Spammer
-local busSpamRunning = false
-local busSpamThread
-
-MasteryFarmsTab:AddButton({
-    Name = "Bus Mastery Spam",
-    Callback = function()
-        if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "bus" and game.Players.LocalPlayer.leaderstats.Glove.Value ~= "train" then
+        local glove = game.Players.LocalPlayer.leaderstats.Glove.Value
+        if glove ~= "SwordFighter" then
             OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Lil bro you need bus equipped or train, that's impossible to equip lmao.",
+                Name = "Ability Error",
+                Content = "You need the 'SwordFighter' glove and badge equipped.",
+                Image = "rbxassetid://6031071050",
+                Time = 4
+            })
+            return
+        end
+
+        abilitySpamEnabled = not abilitySpamEnabled
+        OrionLib:MakeNotification({
+            Name = "Ability Spammer",
+            Content = abilitySpamEnabled and "Ability spam started!" or "Ability spam stopped!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        if abilitySpamEnabled then
+            coroutine.wrap(function()
+                while abilitySpamEnabled do
+                    pcall(function()
+                        game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
+                    end)
+                    wait(0.1)
+                end
+            end)()
+        end
+    end
+})
+
+-- Stop All Spammers Button
+AbilitiesTab:AddButton({
+    Name = "Stop All Ability Spams",
+    Callback = function()
+        if not swordSpamEnabled and not abilitySpamEnabled then
+            OrionLib:MakeNotification({
+                Name = "Spammers",
+                Content = "No spammers are currently active.",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
             return
         end
 
-        if busSpamRunning then
-            OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Already running!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-            return
-        end
+        swordSpamEnabled = false
+        abilitySpamEnabled = false
 
         OrionLib:MakeNotification({
-            Name = "Bus Mastery",
-            Content = "Bus Mastery Spam Activated!",
+            Name = "Spammers",
+            Content = "All ability spammers stopped!",
             Image = "rbxassetid://6031071050",
             Time = 3
         })
-
-        busSpamRunning = true
-        busSpamThread = coroutine.create(function()
-            while busSpamRunning do
-                pcall(function()
-                    game.ReplicatedStorage.busmoment:FireServer()
-                end)
-                wait(8.99)
-            end
-        end)
-        coroutine.resume(busSpamThread)
     end
 })
-
-MasteryFarmsTab:AddButton({
-    Name = "Stop Bus Mastery Spam",
-    Callback = function()
-        if busSpamRunning then
-            busSpamRunning = false
-            OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "Bus Mastery Spam Stopped!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-        else
-            OrionLib:MakeNotification({
-                Name = "Bus Mastery",
-                Content = "It's not running.",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-        end
-    end
-})
-
--- Anti Tab
-local AntiTab = Window:MakeTab({
-    Name = "Anti",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
-AntiTab:AddButton({
-    Name = "Bypass Anti-Cheat",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Bypass Anti-Cheat",
-            Content = "Successfully bypassed anti-cheat for player: " .. game.Players.LocalPlayer.Name,
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-
-        -- Fire the Piano event (indicating successful bypass)
-        game.ReplicatedStorage.Piano:FireServer()
-
-        print("Bypass Anti-Cheat button clicked. Player bypassed successfully.")
-    end
-})
-
--- Final message indicating the UI is ready
-print("Slap Battles Hub UI with Retro & Admin Abilities, Bus Mastery, Fort Mastery Spam, Swordfighter Ability, Sword Swing, and Anti-Cheat functionalities is fully initialized.")
