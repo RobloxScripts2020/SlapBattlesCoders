@@ -15,19 +15,17 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "SlapBattlesHub"
 })
 
--- Debugging output
 print("OrionLib window created.")
 
 -- Create Main Tab
 local MainTab = Window:MakeTab({
-    Name = "Main", -- Tab name
-    Icon = "rbxassetid://4483345998", -- Icon for the tab
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
--- Add a Button to the Main tab
 MainTab:AddButton({
-    Name = "Test Button",  -- Button name
+    Name = "Test Button",
     Callback = function()
         OrionLib:MakeNotification({
             Name = "Test",
@@ -41,25 +39,20 @@ MainTab:AddButton({
 
 -- Create Extras Tab
 local ExtrasTab = Window:MakeTab({
-    Name = "Extras",  -- Tab name
-    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    Name = "Extras",
+    Icon = "rbxassetid://6031071050",
     PremiumOnly = false
 })
 
--- Add a Button to the Extras tab
 ExtrasTab:AddButton({
     Name = "Load Slap Farm Script",
     Callback = function()
-        -- URL for the Slap Farm script
         local scriptURL = "https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/unpatched"
-        
-        -- Attempt to load the script
         local success, errorMessage = pcall(function()
             local scriptContent = game:HttpGet(scriptURL)
             loadstring(scriptContent)()
         end)
-        
-        -- If the pcall fails, show an error message
+
         if not success then
             print("Failed to load Slap Farm Script:", errorMessage)
         else
@@ -68,7 +61,6 @@ ExtrasTab:AddButton({
     end
 })
 
--- Add another button for another action
 ExtrasTab:AddButton({
     Name = "Test Button 2",
     Callback = function()
@@ -82,18 +74,108 @@ ExtrasTab:AddButton({
     end
 })
 
--- Create "Anti" Tab (Tab for bypassing anti-cheat)
-local AntiTab = Window:MakeTab({
-    Name = "Anti",  -- Tab name
-    Icon = "rbxassetid://6031071050", -- Icon for the tab
+-- Create Slap Battles Mastery Farms Tab
+local MasteryFarmsTab = Window:MakeTab({
+    Name = "Slap Battles Mastery Farms",
+    Icon = "rbxassetid://6031071050",
     PremiumOnly = false
 })
 
--- Add a Button to the Anti tab for bypassing anti-cheat
-AntiTab:AddButton({
-    Name = "Bypass Anti-Cheat",  -- Button name
+MasteryFarmsTab:AddButton({
+    Name = "Start Mastery Farm",
     Callback = function()
-        -- Show notification
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has started!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm started!")
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Mastery Farm",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has stopped.",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm stopped!")
+    end
+})
+
+-- Add Bus Mastery Spam functionality
+local busSpamRunning = false
+local busSpamThread
+
+MasteryFarmsTab:AddButton({
+    Name = "Bus Mastery Spam",
+    Callback = function()
+        if busSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Already running!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Bus Mastery",
+            Content = "Bus Mastery Spam Activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        busSpamRunning = true
+        busSpamThread = coroutine.create(function()
+            while busSpamRunning do
+                pcall(function()
+                    game.ReplicatedStorage.busmoment:FireServer()
+                end)
+                wait(8.99)
+            end
+        end)
+        coroutine.resume(busSpamThread)
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Bus Mastery Spam",
+    Callback = function()
+        if busSpamRunning then
+            busSpamRunning = false
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Bus Mastery Spam Stopped!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "It's not running.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        end
+    end
+})
+
+-- Create Anti Tab
+local AntiTab = Window:MakeTab({
+    Name = "Anti",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+AntiTab:AddButton({
+    Name = "Bypass Anti-Cheat",
+    Callback = function()
         OrionLib:MakeNotification({
             Name = "Bypass Anti-Cheat",
             Content = "Attempting to bypass anti-cheat...",
@@ -101,12 +183,9 @@ AntiTab:AddButton({
             Time = 3
         })
 
-        -- Kick the player with a custom error message
         game.Players.LocalPlayer:Kick("Failed to bypass anti-cheat error code :-1")
-
         print("Bypass Anti-Cheat button clicked. Player kicked with error code.")
     end
 })
 
--- Final message indicating the UI is ready
-print("Slap Battles Hub UI with 'Anti' tab is now visible.")
+print("Slap Battles Hub UI is fully initialized.")
