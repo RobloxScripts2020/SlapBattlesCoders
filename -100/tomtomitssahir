@@ -1,0 +1,121 @@
+-- Load OrionLib
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
+
+-- Check if OrionLib loaded successfully
+if not OrionLib then
+    warn("Failed to load OrionLib")
+    return
+end
+
+print("OrionLib loaded successfully.")
+
+-- Create the main window
+local Window = OrionLib:MakeWindow({
+    Name = "Slap Battles Hub",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "SlapBattlesHub"
+})
+
+-- Check if the Window is created
+if not Window then
+    warn("Failed to create the window!")
+    return
+end
+
+print("Window created successfully.")
+
+-- Wait a moment for UI to load and check for the window's visibility
+wait(1)
+
+-- Ensure that the window is visible (check the UI component directly)
+local OrionUI = game:GetService("CoreGui"):FindFirstChild("OrionUI")
+if not OrionUI then
+    warn("OrionUI is not found in CoreGui. The UI might not be visible.")
+    return
+else
+    print("OrionUI is visible in CoreGui.")
+end
+
+-- Create Main Tab
+local MainTab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Check if the Main Tab is created successfully
+if not MainTab then
+    warn("Failed to create the Main Tab!")
+    return
+end
+
+print("Main Tab created successfully.")
+
+-- Add the Test Button to MainTab
+MainTab:AddButton({
+    Name = "Test Button",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Test",
+            Content = "Button clicked successfully!",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+        print("Test Button clicked!")
+    end
+})
+
+-- Create Retro & Admin Ability Tab
+local RetroAdminTab = Window:MakeTab({
+    Name = "Retro & Admin Ability",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+-- Check if the RetroAdmin Tab is created
+if not RetroAdminTab then
+    warn("Failed to create the Retro & Admin Tab!")
+    return
+end
+
+print("Retro & Admin Tab created successfully.")
+
+-- Adding Ban Hammer Button to RetroAdminTab
+RetroAdminTab:AddButton({
+    Name = "Ban Hammer",
+    Callback = function()
+        local args = { [1] = "Ban Hammer" }
+        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
+        OrionLib:MakeNotification({
+            Name = "Ban Hammer",
+            Content = "Ban Hammer ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Ban Hammer activated!")
+    end
+})
+
+-- Adding Rocket Launcher Button to RetroAdminTab
+RetroAdminTab:AddButton({
+    Name = "Rocket Launcher",
+    Callback = function()
+        local args = { [1] = "Rocket Launcher" }
+        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
+        OrionLib:MakeNotification({
+            Name = "Rocket Launcher",
+            Content = "Rocket Launcher ability activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Rocket Launcher activated!")
+    end
+})
+
+-- Add wait time to ensure the window is completely rendered before the script proceeds
+wait(2)
+
+-- Final print indicating the setup is complete
+print("Slap Battles Hub UI is fully initialized and should now be visible.")
+
