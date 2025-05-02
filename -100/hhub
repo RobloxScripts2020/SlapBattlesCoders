@@ -82,5 +82,103 @@ ExtrasTab:AddButton({
     end
 })
 
+-- Create "Slap Battles Mastery Farms" Tab (Tab 3)
+local MasteryFarmsTab = Window:MakeTab({
+    Name = "Slap Battles Mastery Farms",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add a Button to Mastery Farms Tab
+MasteryFarmsTab:AddButton({
+    Name = "Start Mastery Farm",  -- Button name
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has started!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm started!")
+    end
+})
+
+-- Add another Button to Mastery Farms Tab
+MasteryFarmsTab:AddButton({
+    Name = "Stop Mastery Farm",  -- Button name
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Mastery Farming",
+            Content = "Mastery farm has stopped.",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Mastery farm stopped!")
+    end
+})
+
+-- Add a TextLabel to Mastery Farms Tab (Optional)
+MasteryFarmsTab:AddTextLabel({
+    Name = "MasteryFarmInfo",
+    Text = "Click the buttons to start or stop Mastery Farm.",
+    Size = UDim2.new(0, 400, 0, 50),
+    Position = UDim2.new(0, 50, 0, 150),
+    Font = Enum.Font.SourceSans,
+    TextSize = 18,
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- White color
+})
+
+-- Create "Anti" Tab (Tab 4)
+local AntiTab = Window:MakeTab({
+    Name = "Anti",  -- Tab name
+    Icon = "rbxassetid://6031071050", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add a Button to the Anti tab
+AntiTab:AddButton({
+    Name = "Anti Exploit",  -- Button name
+    Callback = function()
+        -- Example anti-exploit action (placeholder for now)
+        OrionLib:MakeNotification({
+            Name = "Anti Exploit",
+            Content = "This is a placeholder for anti-exploit feature!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+        print("Anti Exploit feature activated!")  -- Can be replaced with any specific anti-exploit code
+    end
+})
+
+-- Add a TextLabel to Anti tab (Optional info)
+AntiTab:AddTextLabel({
+    Name = "AntiInfo",
+    Text = "This is a placeholder for anti-exploit features.",
+    Size = UDim2.new(0, 400, 0, 50),
+    Position = UDim2.new(0, 50, 0, 150),
+    Font = Enum.Font.SourceSans,
+    TextSize = 18,
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- White color
+})
+
+-- Add a TextButton for Anti Slap Battles Anti-Cheat
+AntiTab:AddButton({
+    Name = "Anti Slap Battles Anti-Cheat (Warning: Clicking this could get you banned)",
+    Callback = function()
+        -- Show warning notification
+        OrionLib:MakeNotification({
+            Name = "Warning",
+            Content = "Clicking this button could result in a ban. Proceed with caution.",
+            Image = "rbxassetid://6031071050",
+            Time = 5
+        })
+        
+        -- Kick the player with a warning message
+        game.Players.LocalPlayer:Kick("This is for testing reason you shouldn't be abusing this option.")
+        
+        print("Anti Slap Battles Anti-Cheat button clicked. Player kicked with warning!")
+    end
+})
+
 -- Final message indicating the UI is ready
-print("Slap Battles Hub UI should now be visible.")
+print("Slap Battles Hub UI with 'Slap Battles Mastery Farms' and 'Anti' tab is now visible.")
