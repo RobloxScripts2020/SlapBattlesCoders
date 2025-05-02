@@ -114,33 +114,44 @@ local busSpamThread
 MasteryFarmsTab:AddButton({
     Name = "Bus Mastery Spam",
     Callback = function()
-        if busSpamRunning then
+        -- Check if player has "Bus" or "Train" glove equipped
+        if game.Players.LocalPlayer.leaderstats.Glove.Value == "Bus" or game.Players.LocalPlayer.leaderstats.Glove.Value == "Train" then
+            if busSpamRunning then
+                OrionLib:MakeNotification({
+                    Name = "Bus Mastery",
+                    Content = "Already running!",
+                    Image = "rbxassetid://6031071050",
+                    Time = 3
+                })
+                return
+            end
+
             OrionLib:MakeNotification({
                 Name = "Bus Mastery",
-                Content = "Already running!",
+                Content = "Bus Mastery Spam Activated!",
                 Image = "rbxassetid://6031071050",
                 Time = 3
             })
-            return
+
+            busSpamRunning = true
+            busSpamThread = coroutine.create(function()
+                while busSpamRunning do
+                    pcall(function()
+                        game.ReplicatedStorage.busmoment:FireServer()
+                    end)
+                    wait(8.99)
+                end
+            end)
+            coroutine.resume(busSpamThread)
+        else
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Lil bro you need bus equipped or train, that's impossible to equip lmao",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            print("Player does not have 'Bus' or 'Train' glove equipped!")
         end
-
-        OrionLib:MakeNotification({
-            Name = "Bus Mastery",
-            Content = "Bus Mastery Spam Activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-
-        busSpamRunning = true
-        busSpamThread = coroutine.create(function()
-            while busSpamRunning do
-                pcall(function()
-                    game.ReplicatedStorage.busmoment:FireServer()
-                end)
-                wait(8.99)
-            end
-        end)
-        coroutine.resume(busSpamThread)
     end
 })
 
