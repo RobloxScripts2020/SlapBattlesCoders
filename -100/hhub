@@ -322,5 +322,37 @@ AbilitiesTab:AddButton({
     end
 })
 
+-- Create MasterySlaps Tab
+local MasterySlapsTab = Window:MakeTab({
+    Name = "MasterySlaps",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+-- Show welcome message on first interaction
+local showedWelcomeMessage = false
+
+MasterySlapsTab:AddButton({
+    Name = "Slap Everyone Nearby",
+    Callback = function()
+        if not showedWelcomeMessage then
+            showedWelcomeMessage = true
+            OrionLib:MakeNotification({
+                Name = "MasterySlaps",
+                Content = "Welcome to beta testing version!",
+                Image = "rbxassetid://6031071050",
+                Time = 4
+            })
+        end
+
+        -- Simulate slap logic (customize if you want real slap functionality)
+        for _, player in pairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                print("Slapped:", player.Name)
+            end
+        end
+    end
+})
+
 -- Final message indicating the UI is ready
 print("Slap Battles Hub UI with Anti-Cheat Bypass, Bus Mastery, Fort Mastery Spam, Swordfighter Ability, Sword Swing, and Abilities Tab functionalities is fully initialized.")
