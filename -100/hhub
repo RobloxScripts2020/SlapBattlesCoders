@@ -188,4 +188,89 @@ AntiTab:AddButton({
     end
 })
 
+-- Fort Spammer V2.0 feature with glove check
+local fortSpamRunning = false
+local fortSpamThread
+
+MasteryFarmsTab:AddButton({
+    Name = "Fort Spam V2.0",
+    Callback = function()
+        -- Check if player has Fort glove equipped
+        local gloveEquipped = game.Players.LocalPlayer.leaderstats and game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort"
+        
+        if not gloveEquipped then
+            OrionLib:MakeNotification({
+                Name = "Fort Spam V2.0",
+                Content = "You don't got Fort equipped, bozo!",
+                Image = "rbxassetid://6031071050",
+                Time = 5
+            })
+            return
+        end
+
+        -- Check if anti-cheat bypass is active
+        if not game.Players.LocalPlayer:GetAttribute("BypassAntiCheat") then
+            OrionLib:MakeNotification({
+                Name = "Anti-Cheat Bypass Required",
+                Content = "You must bypass anti-cheat before using Fort Spam V2.0.",
+                Image = "rbxassetid://6031071050",
+                Time = 5
+            })
+            return
+        end
+
+        -- Check if spam is already running
+        if fortSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Fort Spam V2.0",
+                Content = "Already spamming!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Fort Spam V2.0",
+            Content = "Fort Spam V2.0 Activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        fortSpamRunning = true
+        fortSpamThread = coroutine.create(function()
+            while fortSpamRunning do
+                pcall(function()
+                    -- Triggering fort action (replaced with Fortlol as per your request)
+                    game.ReplicatedStorage.Fortlol:FireServer()
+                end)
+                wait(4.99)  -- Adjusted time between spams to 4.99 seconds
+            end
+        end)
+        coroutine.resume(fortSpamThread)
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Fort Spam V2.0",
+    Callback = function()
+        if fortSpamRunning then
+            fortSpamRunning = false
+            OrionLib:MakeNotification({
+                Name = "Fort Spam V2.0",
+                Content = "Fort Spam V2.0 Stopped!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "Fort Spam V2.0",
+                Content = "It's not running.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        end
+    end
+})
+
 print("Slap Battles Hub UI is fully initialized.")
