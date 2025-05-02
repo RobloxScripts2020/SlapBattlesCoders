@@ -9,9 +9,14 @@ end
 
 print("OrionLib loaded successfully.")
 
--- Create the main window
+-- Get the number of players in the server
+local function getPlayerCount()
+    return #game.Players:GetPlayers()
+end
+
+-- Create the main window with the "Player Executor" title
 local Window = OrionLib:MakeWindow({
-    Name = "Slap Battles Hub",
+    Name = "Player Executor - Slap Battles Hub | Players: " .. getPlayerCount(), -- Display Player Count
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "SlapBattlesHub"
@@ -66,56 +71,24 @@ MainTab:AddButton({
     end
 })
 
--- Create Retro & Admin Ability Tab
-local RetroAdminTab = Window:MakeTab({
-    Name = "Retro & Admin Ability",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
--- Check if the RetroAdmin Tab is created
-if not RetroAdminTab then
-    warn("Failed to create the Retro & Admin Tab!")
-    return
+-- Add a function to update the player count in the window title
+local function updatePlayerCount()
+    Window:SetName("Player Executor - Slap Battles Hub | Players: " .. getPlayerCount())
 end
 
-print("Retro & Admin Tab created successfully.")
+-- Update player count every 5 seconds
+while true do
+    updatePlayerCount()
+    wait(5)  -- Update every 5 seconds
+end
 
--- Adding Ban Hammer Button to RetroAdminTab
-RetroAdminTab:AddButton({
-    Name = "Ban Hammer",
+-- Spam Sword Button in Main Tab
+local swordSpamRunning = false
+local swordSpamThread
+
+MainTab:AddButton({
+    Name = "Spam Sword",
     Callback = function()
-        local args = { [1] = "Ban Hammer" }
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Ban Hammer",
-            Content = "Ban Hammer ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Ban Hammer activated!")
-    end
-})
-
--- Adding Rocket Launcher Button to RetroAdminTab
-RetroAdminTab:AddButton({
-    Name = "Rocket Launcher",
-    Callback = function()
-        local args = { [1] = "Rocket Launcher" }
-        game:GetService("ReplicatedStorage").RetroAbility:FireServer(unpack(args))
-        OrionLib:MakeNotification({
-            Name = "Rocket Launcher",
-            Content = "Rocket Launcher ability activated!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Rocket Launcher activated!")
-    end
-})
-
--- Add wait time to ensure the window is completely rendered before the script proceeds
-wait(2)
-
--- Final print indicating the setup is complete
-print("Slap Battles Hub UI is fully initialized and should now be visible.")
-
+        if swordSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Spam Sword",
