@@ -94,5 +94,167 @@ MasteryFarmsTab:AddButton({
     end
 })
 
+-- Bus Spammer
+local busSpamRunning = false
+local busSpamThread
+
+MasteryFarmsTab:AddButton({
+    Name = "Bus Mastery Spam",
+    Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "bus" and game.Players.LocalPlayer.leaderstats.Glove.Value ~= "train" then
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Lil bro you need bus equipped or train, that's impossible to equip lmao.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        if busSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Already running!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Bus Mastery",
+            Content = "Bus Mastery Spam Activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        busSpamRunning = true
+        busSpamThread = coroutine.create(function()
+            while busSpamRunning do
+                pcall(function()
+                    game.ReplicatedStorage.busmoment:FireServer()
+                end)
+                wait(8.99)
+            end
+        end)
+        coroutine.resume(busSpamThread)
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Bus Mastery Spam",
+    Callback = function()
+        if busSpamRunning then
+            busSpamRunning = false
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "Bus Mastery Spam Stopped!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "Bus Mastery",
+                Content = "It's not running.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        end
+    end
+})
+
+-- Fort Spammer (V2.0)
+local fortSpamRunning = false
+local fortSpamThread
+
+MasteryFarmsTab:AddButton({
+    Name = "Fort Mastery Spam (V2.0)",
+    Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Fort" then
+            OrionLib:MakeNotification({
+                Name = "Fort Mastery",
+                Content = "You don't got Fort equipped bozo.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        if fortSpamRunning then
+            OrionLib:MakeNotification({
+                Name = "Fort Mastery",
+                Content = "Already running!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+            return
+        end
+
+        OrionLib:MakeNotification({
+            Name = "Fort Mastery",
+            Content = "Fort Mastery Spam Activated!",
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        fortSpamRunning = true
+        fortSpamThread = coroutine.create(function()
+            while fortSpamRunning do
+                pcall(function()
+                    game.ReplicatedStorage.Fortlol:FireServer()
+                end)
+                wait(4.99)
+            end
+        end)
+        coroutine.resume(fortSpamThread)
+    end
+})
+
+MasteryFarmsTab:AddButton({
+    Name = "Stop Fort Mastery Spam",
+    Callback = function()
+        if fortSpamRunning then
+            fortSpamRunning = false
+            OrionLib:MakeNotification({
+                Name = "Fort Mastery",
+                Content = "Fort Mastery Spam Stopped!",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "Fort Mastery",
+                Content = "It's not running.",
+                Image = "rbxassetid://6031071050",
+                Time = 3
+            })
+        end
+    end
+})
+
+-- Anti Tab
+local AntiTab = Window:MakeTab({
+    Name = "Anti",
+    Icon = "rbxassetid://6031071050",
+    PremiumOnly = false
+})
+
+AntiTab:AddButton({
+    Name = "Bypass Anti-Cheat",
+    Callback = function()
+        OrionLib:MakeNotification({
+            Name = "Bypass Anti-Cheat",
+            Content = "Successfully bypassed anti-cheat for player: " .. game.Players.LocalPlayer.Name,
+            Image = "rbxassetid://6031071050",
+            Time = 3
+        })
+
+        -- Fire the Piano event (indicating successful bypass)
+        game.ReplicatedStorage.Piano:FireServer()
+
+        print("Bypass Anti-Cheat button clicked. Player bypassed successfully.")
+    end
+})
+
 -- Final message indicating the UI is ready
-print("Slap Battles Hub UI is fully initialized.")
+print("Slap Battles Hub UI with Anti-Cheat Bypass, Bus Mastery, and Fort Mastery Spam functionalities is fully initialized.")
