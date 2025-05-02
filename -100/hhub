@@ -24,19 +24,22 @@ local MiscTab = Window:MakeTab({
     PremiumOnly = false
 })
 
--- Add Misc Button Example
-MiscTab:AddButton({
-    Name = "Test Misc Button",
-    Callback = function()
-        OrionLib:MakeNotification({
-            Name = "Misc Button",
-            Content = "You clicked the Misc Button!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-        print("Misc Button clicked!")
-    end
+-- TextLabel for displaying messages
+local messageLabel = MiscTab:AddTextLabel({
+    Name = "MessageLabel",
+    Text = "", -- Initially empty
+    TextColor = Color3.fromRGB(255, 0, 0), -- Red text color
+    Font = Enum.Font.SourceSansBold,
+    TextSize = 18,
+    TextTransparency = 0,
+    Visible = false, -- Initially hidden
 })
+
+-- Function to display messages on the TextLabel
+local function displayMessage(message)
+    messageLabel.Text = message
+    messageLabel.Visible = true
+end
 
 -- Add Spam Swordfighter button under Misc Tab
 local swordfighterSpamRunning = false
@@ -78,13 +81,10 @@ MiscTab:AddButton({
             end)
             coroutine.resume(swordfighterSpamThread)
         else
-            OrionLib:MakeNotification({
-                Name = "Swordfighter Ability Spam",
-                Content = "You don't have 'Swordfighter' or 'Retro' equipped, bozo!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-            print("Player does not have 'Swordfighter' or 'Retro' glove equipped!")
+            -- Display custom message if the player does not have the correct glove
+            displayMessage("Nice try bozo, try get badges tab that coming later soon")
+            wait(3) -- Message will be shown for 3 seconds
+            displayMessage("") -- Clear message
         end
     end
 })
@@ -126,13 +126,10 @@ MiscTab:AddButton({
             end)
             coroutine.resume(swordSpamThread)
         else
-            OrionLib:MakeNotification({
-                Name = "Sword Spam",
-                Content = "You don't have 'Swordfighter' or 'Retro' equipped, bozo!",
-                Image = "rbxassetid://6031071050",
-                Time = 3
-            })
-            print("Player does not have 'Swordfighter' or 'Retro' glove equipped!")
+            -- Display custom message if the player does not have the correct glove
+            displayMessage("Nice try bozo, try get badges tab that coming later soon")
+            wait(3) -- Message will be shown for 3 seconds
+            displayMessage("") -- Clear message
         end
     end
 })
