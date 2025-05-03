@@ -1,0 +1,98 @@
+-- Setup
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local userInputService = game:GetService("UserInputService")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Create Animation instances
+local idleAnim = Instance.new("Animation")
+idleAnim.AnimationId = "rbxassetid://16163355836" -- Idle animation ID
+
+local walkAnim = Instance.new("Animation")
+walkAnim.AnimationId = "rbxassetid://93042126024300" -- Walking animation ID
+
+local actionAnim = Instance.new("Animation") -- Action animation for button press
+actionAnim.AnimationId = "rbxassetid://16102717448" -- Action animation ID
+
+-- Load animations into humanoid
+local idleTrack = humanoid:LoadAnimation(idleAnim)
+local walkTrack = humanoid:LoadAnimation(walkAnim)
+local actionTrack = humanoid:LoadAnimation(actionAnim)
+
+-- Play idle animation by default
+idleTrack:Play()
+
+-- Create ScreenGui and TextButton
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player.PlayerGui
+
+local textButton = Instance.new("TextButton")
+textButton.Size = UDim2.new(0, 200, 0, 50)  -- Size of the button
+textButton.Position = UDim2.new(0.5, -100, 0.5, -25)  -- Centered on the screen
+textButton.Text = "Press for Action"
+textButton.Parent = screenGui
+
+-- Monitor for walking or idle state
+local function updateMovementState()
+    if humanoid.MoveDirection.Magnitude > 0 then
+        -- Character is walking, play walk animation
+        if not walkTrack.IsPlaying then
+            walkTrack:Play()
+        end
+        if idleTrack.IsPlaying then
+            idleTrack:Stop()
+        end
+    else
+        -- Character is idle, play idle animation
+        if not idleTrack.IsPlaying then
+            idleTrack:Play()
+        end
+        if walkTrack.IsPlaying then
+            walkTrack:Stop()
+        end
+    end
+end
+
+-- Handle button click to trigger action animation, sound, and FireServer call
+textButton.MouseButton1Click:Connect(function()
+    print("Button clicked")
+
+    -- Stop idle or walking animations if the action animation plays
+    if walkTrack.IsPlaying then
+        walkTrack:Stop()
+    elseif idleTrack.IsPlaying then
+        idleTrack:Stop()
+    end
+
+    -- Play action animation if not already playing
+    if not actionTrack.IsPlaying then
+        actionTrack:Play()
+    else
+        print("Action animation already playing")  -- Debugging
+    end
+    
+    -- Play sound associated with the action animation
+    local actionSound = Instance.new("Sound")
+    actionSound.SoundId = "rbxassetid://858508159"  -- Set sound ID to 858508159
+    actionSound.Parent = character:WaitForChild("HumanoidRootPart")
+    actionSound:Play()
+
+    -- Optionally, destroy the sound after it finishes playing
+    actionSound.Ended:Connect(function()
+        actionSound:Destroy()
+        print("Sound ended and destroyed")  -- Debugging
+    end)
+
+    -- Fire the RemoteEvent (FireServer) in ReplicatedStorage
+    local generalAbilityEvent = replicatedStorage:WaitForChild("GeneralAbility")
+    if generalAbilityEvent then
+        print("Firing GeneralAbility event")  -- Debugging
+        generalAbilityEvent:FireServer()
+    else
+        print("GeneralAbility event not found in ReplicatedStorage")  -- Debugging
+    end
+end)
+
+-- Continuously check for movement state
+humanoid.Running:Connect(updateMovementState)
