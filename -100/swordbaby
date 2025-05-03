@@ -7,7 +7,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
 wait(2.19)
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(4.13)
-fireclickdetector(game:GetService("Workspace").Lobby.SwordFighter.ClickDetector)
+fireclickdetector(game:GetService("Workspace").Lobby.Swordfighter.ClickDetector)
 wait(2)
 while true do
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SbDefaultToAnyGloveSlap/refs/heads/main/swordSwingyBaebae"))()
