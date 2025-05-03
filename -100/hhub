@@ -38,7 +38,7 @@ MainTab:AddButton({
 })
 
 MainTab:AddButton({
-    Name = "250 Killstreak Test",
+    Name = "Edgelord Test",
     Callback = function()
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
@@ -54,39 +54,4 @@ MainTab:AddButton({
         local buttonAnim = Instance.new("Animation")
         buttonAnim.AnimationId = "rbxassetid://92415969699648"
 
-        local actionAnim = Instance.new("Animation")
-        actionAnim.AnimationId = "rbxassetid://16102717448"
-
-        -- Load animations into the humanoid
-        local idleTrack = humanoid:LoadAnimation(idleAnim)
-        local walkTrack = humanoid:LoadAnimation(walkAnim)
-        local buttonTrack = humanoid:LoadAnimation(buttonAnim)
-        local actionTrack = humanoid:LoadAnimation(actionAnim)
-
-        -- Play the animations
-        idleTrack:Play()
-        walkTrack:Play()
-        buttonTrack:Play()
-        actionTrack:Play()
-
-        OrionLib:MakeNotification({
-            Name = "250 Killstreak Test",
-            Content = "Animations triggered successfully!",
-            Image = "rbxassetid://6031071050",
-            Time = 3
-        })
-
-        print("250 Killstreak Test button clicked, animations played.")
-    end
-})
-
--- Create Retro & Admin Ability Tab
-local RetroAdminTab = Window:MakeTab({
-    Name = "Retro & Admin Ability",
-    Icon = "rbxassetid://6031071050",
-    PremiumOnly = false
-})
-
--- All your other buttons remain unchanged here...
--- [KEEP ALL EXISTING CODE BELOW THIS POINT]
--- I’m sk
+        local actionAnim = Instance.new
