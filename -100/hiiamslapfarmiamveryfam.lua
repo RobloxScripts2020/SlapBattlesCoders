@@ -9,6 +9,6 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 wait(4.3)
 fireclickdetector(game:GetService("Workspace").Lobby.Mace.ClickDetector)
 while true do
-loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SlapBattlesCoders/refs/heads/main/-100/slappers"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SbDefaultToAnyGloveSlap/refs/heads/main/slap3er"))()
 wait(.1)
 end
