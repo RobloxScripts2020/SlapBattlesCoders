@@ -1,13 +1,9 @@
--- Main GUI script with launcher button, draggable frame, tabs, preload scripts, and animations, plus rollback to old version
-
--- Services
+-- Ldevs Software V5.23 GUI with Old Version Support
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
-local TweenService = game:GetService("TweenService")
-
 local localPlayer = Players.LocalPlayer
 
--- Notification
+-- First Notification
 StarterGui:SetCore("SendNotification", {
     Title = localPlayer.Name,
     Text = "Ldevs Software V5.23",
@@ -15,163 +11,6 @@ StarterGui:SetCore("SendNotification", {
     Icon = "rbxthumb://type=Asset&id=0&w=150&h=150"
 })
 
--- GUI parent setup
-local gui = Instance.new("ScreenGui")
-gui.Name = "LdevsLauncher"
-gui.ResetOnSpawn = false
-gui.Parent = game.CoreGui
-
--- Launcher button
-local openButton = Instance.new("TextButton")
-openButton.Name = "Launcher"
-openButton.Size = UDim2.new(0, 160, 0, 40)
-openButton.Position = UDim2.new(0, 20, 0.5, -20)
-openButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-openButton.TextColor3 = Color3.new(1, 1, 1)
-openButton.Font = Enum.Font.SourceSansBold
-openButton.TextSize = 18
-openButton.Text = "Ldevs SoftWare"
-openButton.Parent = gui
-
--- Main GUI frame (hidden initially)
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 400, 0, 300)
-frame.Position = UDim2.new(0.5, -200, 0.5, -150)
-frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-frame.Visible = false
-frame.Parent = gui
-
--- Drop shadow
-local shadow = Instance.new("ImageLabel")
-shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-shadow.Size = UDim2.new(1, 30, 1, 30)
-shadow.BackgroundTransparency = 1
-shadow.Image = "rbxassetid://1316045217"
-shadow.ImageTransparency = 0.5
-shadow.ScaleType = Enum.ScaleType.Slice
-shadow.SliceCenter = Rect.new(10, 10, 118, 118)
-shadow.ZIndex = -1
-shadow.Parent = frame
-
--- Drag functionality
-local dragging, dragInput, dragStart, startPos
-frame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = true
-        dragStart = input.Position
-        startPos = frame.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then dragging = false end
-        end)
-    end
-end)
-
-frame.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement then dragInput = input end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        local delta = input.Position - dragStart
-        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end)
-
--- Close button
-local closeBtn = Instance.new("TextButton")
-closeBtn.Text = "X"
-closeBtn.Size = UDim2.new(0, 30, 0, 30)
-closeBtn.Position = UDim2.new(1, -35, 0, 5)
-closeBtn.BackgroundColor3 = Color3.fromRGB(150, 0, 0)
-closeBtn.TextColor3 = Color3.new(1,1,1)
-closeBtn.Font = Enum.Font.SourceSansBold
-closeBtn.TextSize = 18
-closeBtn.Parent = frame
-closeBtn.MouseButton1Click:Connect(function()
-    frame.Visible = false
-end)
-
--- Tab system
-local tabButtons = {}
-local tabs = {
-    {Name = "Infinite Yield", Script = "loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()"},
-    {Name = "Remote Spy", Script = "loadstring(game:HttpGet('https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua'))()"},
-    {Name = "Custom", Script = "-- Your custom script here"},
-    {Name = "Old Beta Version", Script = "ROLLBACK"}
-}
-
-for i, tab in ipairs(tabs) do
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(0, 120, 0, 30)
-    btn.Position = UDim2.new(0, 10 + (i - 1) * 130, 0, 50)
-    btn.Text = tab.Name
-    btn.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-    btn.TextColor3 = Color3.new(1, 1, 1)
-    btn.Font = Enum.Font.SourceSansBold
-    btn.TextSize = 14
-    btn.Parent = frame
-
-    btn.MouseButton1Click:Connect(function()
-        if tab.Script == "ROLLBACK" then
-            gui:Destroy()
-
-            -- Load old GUI version
-            local oldGui = Instance.new("ScreenGui")
-            oldGui.Name = "OldLdevsBeta"
-            oldGui.ResetOnSpawn = false
-            oldGui.Parent = game.CoreGui
-
-            local oldFrame = Instance.new("Frame")
-            oldFrame.Size = UDim2.new(0, 320, 0, 260)
-            oldFrame.Position = UDim2.new(0.5, -160, 0.5, -130)
-            oldFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-            oldFrame.Parent = oldGui
-
-            local dragging, dragInput, dragStart, startPos
-            oldFrame.InputBegan:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    dragging = true
-                    dragStart = input.Position
-                    startPos = oldFrame.Position
-                    input.Changed:Connect(function()
-                        if input.UserInputState == Enum.UserInputState.End then dragging = false end
-                    end)
-                end
-            end)
-
-            oldFrame.InputChanged:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseMovement then dragInput = input end
-            end)
-
-            game:GetService("UserInputService").InputChanged:Connect(function(input)
-                if input == dragInput and dragging then
-                    local delta = input.Position - dragStart
-                    oldFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-                end
-            end)
-        else
-            local func, err = loadstring(tab.Script)
-            if func then
-                pcall(func)
-            else
-                warn("Script load error:", err)
-            end
-        end
-    end)
-end
-
--- Open GUI with animation
-openButton.MouseButton1Click:Connect(function()
-    frame.Visible = true
-    frame.Position = UDim2.new(0.5, -200, 0.5, -200)
-    TweenService:Create(frame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-        Position = UDim2.new(0.5, -200, 0.5, -150)
-    }):Play()
-end)
-
--- Final notification after 60s + 20s delay
 task.delay(60, function()
     StarterGui:SetCore("SendNotification", {
         Title = "wearedevs.net/Ldevs Has Been Updated",
@@ -179,4 +18,167 @@ task.delay(60, function()
         Duration = 20,
         Icon = "rbxthumb://type=Asset&id=0&w=150&h=150"
     })
+
+    task.delay(20, function()
+        -- Create Toggle Button After Notifications
+        local ToggleGui = Instance.new("ScreenGui", game.CoreGui)
+        ToggleGui.Name = "ToggleExecutorGui"
+
+        local OpenButton = Instance.new("TextButton", ToggleGui)
+        OpenButton.Size = UDim2.new(0, 200, 0, 50)
+        OpenButton.Position = UDim2.new(0.5, -100, 0.9, -25)
+        OpenButton.Text = "Open Ldevs Software"
+        OpenButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        OpenButton.TextColor3 = Color3.new(1, 1, 1)
+        OpenButton.Font = Enum.Font.SourceSansBold
+        OpenButton.TextSize = 18
+        OpenButton.Visible = true
+
+        OpenButton.MouseButton1Click:Connect(function()
+            ToggleGui:Destroy()
+
+            -- Create Updated GUI
+            local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+            ScreenGui.Name = "CustomExecutor"
+
+            local Frame = Instance.new("Frame", ScreenGui)
+            Frame.Size = UDim2.new(0, 320, 0, 300)
+            Frame.Position = UDim2.new(0.5, -160, 0.5, -150)
+            Frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+            Frame.BorderSizePixel = 0
+            Frame.Active = true
+            Frame.Draggable = true
+
+            local Title = Instance.new("TextLabel", Frame)
+            Title.Size = UDim2.new(1, 0, 0, 30)
+            Title.Text = "Lvdevs v5"
+            Title.BackgroundTransparency = 1
+            Title.TextColor3 = Color3.new(1, 1, 1)
+            Title.Font = Enum.Font.SourceSansBold
+            Title.TextSize = 20
+
+            local InfoLabel = Instance.new("TextLabel", Frame)
+            InfoLabel.Size = UDim2.new(1, -20, 0, 30)
+            InfoLabel.Position = UDim2.new(0, 10, 0, 30)
+            InfoLabel.Text = "Executor by LunarifyDevelopes. Bypasses anti-cheat."
+            InfoLabel.BackgroundTransparency = 1
+            InfoLabel.TextWrapped = true
+            InfoLabel.TextColor3 = Color3.new(1, 1, 1)
+            InfoLabel.Font = Enum.Font.SourceSans
+            InfoLabel.TextSize = 14
+
+            local TextBox = Instance.new("TextBox", Frame)
+            TextBox.Size = UDim2.new(1, -20, 0, 120)
+            TextBox.Position = UDim2.new(0, 10, 0, 65)
+            TextBox.Text = "-- Enter script here"
+            TextBox.MultiLine = true
+            TextBox.ClearTextOnFocus = false
+            TextBox.TextWrapped = true
+            TextBox.TextYAlignment = Enum.TextYAlignment.Top
+            TextBox.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+            TextBox.TextColor3 = Color3.new(1, 1, 1)
+            TextBox.Font = Enum.Font.Code
+            TextBox.TextSize = 14
+
+            local Execute = Instance.new("TextButton", Frame)
+            Execute.Size = UDim2.new(1, -20, 0, 30)
+            Execute.Position = UDim2.new(0, 10, 1, -70)
+            Execute.Text = "Execute"
+            Execute.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+            Execute.TextColor3 = Color3.new(1, 1, 1)
+            Execute.Font = Enum.Font.SourceSansBold
+            Execute.TextSize = 18
+
+            Execute.MouseButton1Click:Connect(function()
+                local code = TextBox.Text
+                local func, err = loadstring(code)
+                if func then
+                    pcall(func)
+                else
+                    warn("Error loading script: " .. tostring(err))
+                end
+            end)
+
+            local OldVersionButton = Instance.new("TextButton", Frame)
+            OldVersionButton.Size = UDim2.new(1, -20, 0, 30)
+            OldVersionButton.Position = UDim2.new(0, 10, 1, -35)
+            OldVersionButton.Text = "Old Beta Version"
+            OldVersionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            OldVersionButton.TextColor3 = Color3.new(1, 1, 1)
+            OldVersionButton.Font = Enum.Font.SourceSans
+            OldVersionButton.TextSize = 16
+
+            OldVersionButton.MouseButton1Click:Connect(function()
+                if ScreenGui then ScreenGui:Destroy() end
+
+                StarterGui:SetCore("SendNotification", {
+                    Title = localPlayer.Name,
+                    Text = "Ldevs Software V5.23",
+                    Duration = 60,
+                    Icon = "rbxthumb://type=Asset&id=0&w=150&h=150"
+                })
+
+                task.delay(60, function()
+                    StarterGui:SetCore("SendNotification", {
+                        Title = "wearedevs.net/Ldevs Has Been Updated",
+                        Text = "Ldevs Software Has Been Injected",
+                        Duration = 20,
+                        Icon = "rbxthumb://type=Asset&id=0&w=150&h=150"
+                    })
+
+                    task.delay(20, function()
+                        local OldGui = Instance.new("ScreenGui", game.CoreGui)
+                        OldGui.Name = "OldLdevsGUI"
+
+                        local OldFrame = Instance.new("Frame", OldGui)
+                        OldFrame.Size = UDim2.new(0, 320, 0, 260)
+                        OldFrame.Position = UDim2.new(0.5, -160, 0.5, -130)
+                        OldFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+                        OldFrame.Active = true
+                        OldFrame.Draggable = true
+
+                        local OldTitle = Instance.new("TextLabel", OldFrame)
+                        OldTitle.Size = UDim2.new(1, 0, 0, 30)
+                        OldTitle.Text = "Lvdevs v5"
+                        OldTitle.BackgroundTransparency = 1
+                        OldTitle.TextColor3 = Color3.new(1, 1, 1)
+                        OldTitle.Font = Enum.Font.SourceSansBold
+                        OldTitle.TextSize = 20
+
+                        local OldTextBox = Instance.new("TextBox", OldFrame)
+                        OldTextBox.Size = UDim2.new(1, -20, 0, 120)
+                        OldTextBox.Position = UDim2.new(0, 10, 0, 40)
+                        OldTextBox.Text = "-- Old Version Script Area"
+                        OldTextBox.MultiLine = true
+                        OldTextBox.ClearTextOnFocus = false
+                        OldTextBox.TextWrapped = true
+                        OldTextBox.TextYAlignment = Enum.TextYAlignment.Top
+                        OldTextBox.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+                        OldTextBox.TextColor3 = Color3.new(1, 1, 1)
+                        OldTextBox.Font = Enum.Font.Code
+                        OldTextBox.TextSize = 14
+
+                        local OldExecute = Instance.new("TextButton", OldFrame)
+                        OldExecute.Size = UDim2.new(1, -20, 0, 30)
+                        OldExecute.Position = UDim2.new(0, 10, 1, -40)
+                        OldExecute.Text = "Execute"
+                        OldExecute.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+                        OldExecute.TextColor3 = Color3.new(1, 1, 1)
+                        OldExecute.Font = Enum.Font.SourceSansBold
+                        OldExecute.TextSize = 18
+
+                        OldExecute.MouseButton1Click:Connect(function()
+                            local code = OldTextBox.Text
+                            local func, err = loadstring(code)
+                            if func then
+                                pcall(func)
+                            else
+                                warn("Error loading script: " .. tostring(err))
+                            end
+                        end)
+                    end)
+                end)
+            end)
+        end)
+    end)
 end)
