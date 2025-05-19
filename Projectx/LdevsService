@@ -1,4 +1,4 @@
--- Main GUI script with launcher button, draggable frame, tabs, preload scripts, and animations
+-- Main GUI script with launcher button, draggable frame, tabs, preload scripts, and animations, plus rollback to old version
 
 -- Services
 local Players = game:GetService("Players")
@@ -14,8 +14,6 @@ StarterGui:SetCore("SendNotification", {
     Duration = 60,
     Icon = "rbxthumb://type=Asset&id=0&w=150&h=150"
 })
-
--- Second Notification and GUI launch after delay
 
 -- GUI parent setup
 local gui = Instance.new("ScreenGui")
@@ -100,7 +98,8 @@ local tabButtons = {}
 local tabs = {
     {Name = "Infinite Yield", Script = "loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()"},
     {Name = "Remote Spy", Script = "loadstring(game:HttpGet('https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua'))()"},
-    {Name = "Custom", Script = "-- Your custom script here"}
+    {Name = "Custom", Script = "-- Your custom script here"},
+    {Name = "Old Beta Version", Script = "ROLLBACK"}
 }
 
 for i, tab in ipairs(tabs) do
@@ -115,11 +114,50 @@ for i, tab in ipairs(tabs) do
     btn.Parent = frame
 
     btn.MouseButton1Click:Connect(function()
-        local func, err = loadstring(tab.Script)
-        if func then
-            pcall(func)
+        if tab.Script == "ROLLBACK" then
+            gui:Destroy()
+
+            -- Load old GUI version
+            local oldGui = Instance.new("ScreenGui")
+            oldGui.Name = "OldLdevsBeta"
+            oldGui.ResetOnSpawn = false
+            oldGui.Parent = game.CoreGui
+
+            local oldFrame = Instance.new("Frame")
+            oldFrame.Size = UDim2.new(0, 320, 0, 260)
+            oldFrame.Position = UDim2.new(0.5, -160, 0.5, -130)
+            oldFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+            oldFrame.Parent = oldGui
+
+            local dragging, dragInput, dragStart, startPos
+            oldFrame.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    dragging = true
+                    dragStart = input.Position
+                    startPos = oldFrame.Position
+                    input.Changed:Connect(function()
+                        if input.UserInputState == Enum.UserInputState.End then dragging = false end
+                    end)
+                end
+            end)
+
+            oldFrame.InputChanged:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseMovement then dragInput = input end
+            end)
+
+            game:GetService("UserInputService").InputChanged:Connect(function(input)
+                if input == dragInput and dragging then
+                    local delta = input.Position - dragStart
+                    oldFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+                end
+            end)
         else
-            warn("Script load error:", err)
+            local func, err = loadstring(tab.Script)
+            if func then
+                pcall(func)
+            else
+                warn("Script load error:", err)
+            end
         end
     end)
 end
