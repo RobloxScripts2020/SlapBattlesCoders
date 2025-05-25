@@ -1,0 +1,3 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScripts2020/SbDefaultToAnyGloveSlap/refs/heads/main/DefaultTest"))()
+wait(.0)
+end
