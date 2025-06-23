@@ -6,7 +6,6 @@ local LocalPlayer = Players.LocalPlayer
 
 local SUPPORTED_GAME_ID = 6403373529
 
--- Check if running on supported game
 if game.PlaceId ~= SUPPORTED_GAME_ID then
     OrionLib:MakeNotification({
         Name = "Unsupported Game",
@@ -14,10 +13,9 @@ if game.PlaceId ~= SUPPORTED_GAME_ID then
         Time = 5,
         Icon = "rbxassetid://4483345998"
     })
-    return -- Stop script execution
+    return
 end
 
--- Version Select Window
 local versionWindow = OrionLib:MakeWindow({
     Name = "Luna Hub - Version Select",
     HidePremium = false,
@@ -33,151 +31,17 @@ local versionTab = versionWindow:MakeTab({
     PremiumOnly = false
 })
 
-versionTab:AddParagraph("Test Versions", "Select a version to load Luna Hub")
-
-local function launchLunaHub(version)
-    OrionLib:Destroy() -- Close version selector window
-    wait(0.5)
-
-    -- Reload OrionLib for main window
-    OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
-
-    local Window = OrionLib:MakeWindow({
-        Name = "Luna Hub v." .. version,
-        HidePremium = false,
-        SaveConfig = true,
-        ConfigFolder = "LunaHubConfig"
-    })
-
-    -- Info Tab
-    local InfoTab = Window:MakeTab({ Name = "Info", Icon = "rbxassetid://6023426915", PremiumOnly = false })
-
-    InfoTab:AddParagraph("Script Info", "This script was made by _.moonfx on TikTok")
-    InfoTab:AddLabel("Username: " .. LocalPlayer.Name)
-    InfoTab:AddLabel("UserID: " .. LocalPlayer.UserId)
-    InfoTab:AddLabel("Players in Server: " .. #Players:GetPlayers())
-
-    InfoTab:AddButton({
-        Name = "Teleport to 5-player server",
-        Callback = function()
-            local PlaceId = game.PlaceId
-            local success, response = pcall(function()
-                return request({
-                    Url = "https://games.roblox.com/v1/games/" .. PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
-                })
-            end)
-
-            if success and response.Success then
-                local data = HttpService:JSONDecode(response.Body)
-                for _, server in ipairs(data.data) do
-                    if server.playing == 5 and server.id ~= game.JobId then
-                        TeleportService:TeleportToPlaceInstance(PlaceId, server.id, LocalPlayer)
-                        return
-                    end
-                end
-                OrionLib:MakeNotification({
-                    Name = "No Server Found",
-                    Content = "Couldn't find a server with exactly 5 players.",
-                    Time = 3,
-                    Icon = "rbxassetid://4483345998"
-                })
-            else
-                OrionLib:MakeNotification({
-                    Name = "Error",
-                    Content = "Failed to fetch server list.",
-                    Time = 3,
-                    Icon = "rbxassetid://4483345998"
-                })
-            end
-        end
-    })
-
-    -- Misc Tab
-    local MiscTab = Window:MakeTab({ Name = "Misc", Icon = "rbxassetid://6026568193", PremiumOnly = false })
-
-    local validGloves = {
-        "Diamond", "ZZZZZZZ", "Extended", "Brick", "Snow", "Pull", "Flash", "Spring",
-        "Swapper", "Bull", "Dice", "Ghost", "Thanos", "Stun", "Za Hando", "Fort", "Magnet",
-        "Pusher", "Anchor", "Space", "Boomerang", "Mail", "Golden", "Squid", "MR",
-        "Hive", "Reaper", "Baby", "Replica", "Defense", "Killstreak", "Reverse",
-        "Shukuchi", "Duelist", "woah", "Ice", "Adios", "Blocked", "Engineer", "Rocky",
-        "Conveyor", "Phantom", "Wormhole", "STOP", "Equalizer", "Track", "Stalker",
-        "Prop", "Shield", "Booster", "Ping Pong", "Baller", "Home Run", "Whirlwind",
-        "Slicer", "Excavator", "Nightmare", "Thor", "Pocket", "Grapple", "Cloud",
-        "Gravity", "Parry", "Jebaited", "Meteor", "Oven", "Guardian Angel", "Sun",
-        "Ferryman", "Blackhole", "Blink", "Tableflip", "Slapple", "Beatdown", "Chicken",
-        "BONK", "Sbeve", "Golem", "Grab", "UFO", "Demolition", "Beachball", "Shotgun",
-        "64", "Roguelike", "Barrel", "Lawnmower", "Virus", "God’s Hand", "The Flex",
-        "Overkill", "Spectator", "Custom", "Ultra Instinct", "Titan", "Vampire",
-        "Cannoneer", "Killerfish", "Acrobat", "Megarock", "Plague", "Hallow Jack",
-        "bus", "Mitten", "Phase", "Bomb", "Warp", "Jet", "Bubble", "potato", "Shard",
-        "bob", "Cult", "Buddies", "Moon", "Jupiter", "Spy", "Detonator", "Rage"
-    }
-
-    local gloveName = ""
-    MiscTab:AddTextbox({
-        Name = "Select Your Glove",
-        Default = "",
-        TextDisappear = true,
-        Callback = function(text)
-            gloveName = text
-        end
-    })
-
-    MiscTab:AddButton({
-        Name = "Use Glove",
-        Callback = function()
-            local input = gloveName:lower():gsub("%s+", "")
-            local found = false
-
-            for _, g in ipairs(validGloves) do
-                if g:lower():gsub("%s+", "") == input then
-                    found = true
-                    break
-                end
-            end
-
-            if found then
-                local ability = game.ReplicatedStorage:WaitForChild("GeneralAbility", 5)
-                if ability and ability:IsA("RemoteEvent") then
-                    ability:FireServer()
-                    OrionLib:MakeNotification({
-                        Name = "Success",
-                        Content = "Used glove: " .. gloveName,
-                        Time = 3,
-                        Icon = "rbxassetid://4483345998"
-                    })
-                else
-                    OrionLib:MakeNotification({
-                        Name = "Error",
-                        Content = "GeneralAbility not found or invalid.",
-                        Time = 3,
-                        Icon = "rbxassetid://4483345998"
-                    })
-                end
-            else
-                OrionLib:MakeNotification({
-                    Name = "Invalid",
-                    Content = "Enter a valid Slap Battles glove.",
-                    Time = 3,
-                    Icon = "rbxassetid://4483345998"
-                })
-            end
-        end
-    })
-
-    OrionLib:Init()
-end
-
 local versions = { "0.10", "0.95", "0.250", "1.9", "12.12 (beta preview)" }
+local selectedVersion = versions[1] -- default
 
-for _, v in ipairs(versions) do
-    versionTab:AddButton({
-        Name = v,
-        Callback = function()
-            launchLunaHub(v)
-        end
-    })
-end
+versionTab:AddDropdown({
+    Name = "Select Version",
+    Default = selectedVersion,
+    Options = versions,
+    Callback = function(value)
+        selectedVersion = value
+    end
+})
 
-OrionLib:Init()
+versionTab:AddButton({
+    Name = "Laun
