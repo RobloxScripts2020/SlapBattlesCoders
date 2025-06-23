@@ -1,0 +1,71 @@
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))()
+
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local LocalPlayer = Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
+
+local Window = OrionLib:MakeWindow({
+    Name = "Luna Hub v.103",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "LunaHubConfig"
+})
+
+-- Info Tab
+local InfoTab = Window:MakeTab({
+    Name = "Info",
+    Icon = "rbxassetid://6023426915",
+    PremiumOnly = false
+})
+
+local playerCountLabel = InfoTab:AddLabel("Players in server: " .. tostring(#Players:GetPlayers()))
+InfoTab:AddLabel("Your username: " .. LocalPlayer.Name)
+InfoTab:AddLabel("Your UserID: " .. tostring(LocalPlayer.UserId))
+
+spawn(function()
+    while true do
+        playerCountLabel:Set("Players in server: " .. tostring(#Players:GetPlayers()))
+        wait(5)
+    end
+end)
+
+InfoTab:AddButton({
+    Name = "Teleport to 2-player or 3-player server",
+    Callback = function()
+        local PlaceId = game.PlaceId
+        
+        local function findServer(targetPlayers)
+            local cursor = ""
+            while true do
+                local url = "https://games.roblox.com/v1/games/"..PlaceId.."/servers/Public?sortOrder=Asc&limit=100"
+                if cursor ~= "" then
+                    url = url .. "&cursor=" .. cursor
+                end
+                local success, response = pcall(function()
+                    return game:HttpGet(url)
+                end)
+                if not success then break end
+                
+                local data = HttpService:JSONDecode(response)
+                if not data or not data.data then break end
+                
+                for _, server in pairs(data.data) do
+                    if server.playing == targetPlayers and server.id ~= game.JobId then
+                        return server.id
+                    end
+                end
+                
+                if data.nextPageCursor then
+                    cursor = data.nextPageCursor
+                else
+                    break
+                end
+            end
+            return nil
+        end
+        
+        local serverId = findServer(2) or findServer(3)
+        
+        if serverId then
+            TeleportService:Telepor
